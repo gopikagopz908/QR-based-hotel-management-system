@@ -163,7 +163,7 @@ const Card = ({ image, name, price, description }) => {
   const [selected, setSelected] = useState(false);
 
   return (
-    <div className="relative border border-gray-300 bg-amber-500 h-[650px] w-[550px] shadow-lg flex flex-col justify-between items-center rounded-3xl  
+    <div className="relative border border-gray-300  h-[650px] w-[550px] shadow-lg flex flex-col justify-between items-center rounded-3xl  
       hover:scale-105 hover:shadow-2xl hover:transition-transform">
       
       {/* Select Box in Top Right */}
@@ -177,15 +177,15 @@ const Card = ({ image, name, price, description }) => {
       {/* Food Image */}
       <img
         src={image}
-        className="h-[250px] w-[250px] absolute rounded-full top-[-40px] transition-transform duration-500 ease-in-out hover:translate-x-4 hover:-translate-x-4 hover:rotate-360"
+        className="h-[280px] w-[320px] absolute rounded-full top-[-40px] transition-transform duration-500 ease-in-out hover:translate-x-4 hover:-translate-x-4 hover:rotate-360"
         alt={name}
       />
 
       {/* Content */}
-      <div className="text-center mt-56 p-2 space-y-4">
-        <p className="text-4xl font-bold text-red-500">₹{price}</p>
-        <h2 className="text-2xl font-bold">{name}</h2>
-        <p className="text-gray-600 text-xl">{description}</p>
+      <div className="text-center mt-68 p-2 space-y-4">
+        <p className="text-4xl  lg:text-5xl font-bold text-red-500">₹{price}</p>
+        <h2 className="text-2xl lg:text-5xl font-bold">{name}</h2>
+        <p className="text-gray-600 text-xl lg:text-2xl">{description}</p>
       </div>
     </div>
   );

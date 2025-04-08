@@ -6,12 +6,23 @@ import Footer from '../Footer/Footer'
 
 function Layout(){
     return(
-<div className='w-full h-screen bg-white '>
-<Navbar/>
-<Outlet/>
-<Footer/> 
+<div className="flex flex-col min-h-screen bg-white">
+  {/* Fixed Navbar */}
+  <div className="fixed top-0 left-0 w-full z-50">
+    <Navbar />
+  </div>
 
-        </div>
+  {/* Scrollable Content */}
+  <div className="flex-1 p-22 lg:pt-54 px-4 ">
+    <Outlet />
+  </div>
+
+  {/* Footer always at the bottom */}
+  <Footer />
+</div>
+
+
+        
     )
 }
 export default Layout
