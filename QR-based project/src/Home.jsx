@@ -40,7 +40,7 @@ import React from "react";
 
 function Home() {
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-red-600">
+    <div className="flex justify-center items-center w-screen h-screen ">
         <div
     className="w-full h-full bg-[url('/img.png')] bg-cover bg-center rounded-lg shadow-lg"
   >

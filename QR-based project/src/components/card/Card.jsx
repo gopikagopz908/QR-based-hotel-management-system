@@ -217,8 +217,8 @@ const Card = ({ image, name, price, description }) => {
       <img
         src={image}
         alt={name}
-        className="h-[200px] sm:h-[240px] md:h-[260px] lg:h-[280px] w-[200px] sm:w-[260px] md:w-[280px] lg:w-[320px] 
-          absolute rounded-full top-[-40px] transition-transform duration-500 ease-in-out 
+        className="h-[200px] sm:h-[240px] md:h-[260px] lg:h-[350px] w-[200px] sm:w-[260px] md:w-[280px] lg:w-[380px] 
+          absolute rounded-full top-[-55px] transition-transform duration-500 ease-in-out 
           hover:translate-x-4 hover:-translate-x-4 hover:rotate-360"
       />
 

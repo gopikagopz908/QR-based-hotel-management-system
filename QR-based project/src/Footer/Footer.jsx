@@ -341,7 +341,7 @@ const Footer = ({ className }) => {
               <div className="w-8 h-8 border-2 border-white rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 border-t-2 border-r-2 border-white transform rotate-45" />
               </div>
-              <h2 className="text-4xl font-serif italic">favor Bliss</h2>
+              <h2 className="text-4xl  lg:text-8xl font-serif italic">favor Bliss</h2>
             </div>
             <p className="text-gray-400 text-4xl leading-relaxed">
               In the new era of technology we look a in the future with certainty and pride to for our company and.
@@ -362,7 +362,7 @@ const Footer = ({ className }) => {
 
           {/* Pages */}
           <div className="space-y-2">
-            <h3 className="text-4xl font-medium">Pages</h3>
+            <h3 className="text-4xl  lg:text-6xl font-medium">Pages</h3>
             <nav>
               <ul className="space-y-4">
                 {mainLinks.map((link, index) => (
@@ -381,7 +381,7 @@ const Footer = ({ className }) => {
 
           {/* Utility Pages */}
           <div className="space-y-2">
-            <h3 className="text-4xl font-medium">Utility Pages</h3>
+            <h3 className="text-4xl  lg:text-6xl font-medium">Utility Pages</h3>
             <nav>
               <ul className="space-y-4">
                 {utilityLinks.map((link, index) => (
@@ -399,8 +399,8 @@ const Footer = ({ className }) => {
           </div>
 
           {/* Instagram Section */}
-          <div className="space-y-2">
-            <h3 className="text-4xl font-medium">Follow Us On Instagram</h3>
+          <div className="space-y-2 ">
+            <h3 className="text-4xl lg:text-6xl font-medium ">Follow Us On Instagram</h3>
             <div className="grid grid-cols-2 gap-2">
               {instagramImages.map((image, index) => (
                 <a 
