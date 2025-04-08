@@ -4,6 +4,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dbConnect from './src/dbconfig/dbConnect.js';
 import productRoute from './src/routes/productRoute.js';
+import orderRoute from './src/routes/orderRoute.js';
+import errorHandler from './src/Middlewares/errorHandler.js';
 const app=express()
 
 
@@ -15,7 +17,10 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-app.use("/api",productRoute) 
+app.use("/api/product",productRoute) ;
+app.use("/api/order",orderRoute);
+app.use(errorHandler)
+
 
 
 export default app;

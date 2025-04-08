@@ -13,7 +13,7 @@ function Layout(){
   </div>
 
   {/* Scrollable Content */}
-  <div className="flex-1 p-22 lg:pt-54 px-4 ">
+  <div className=" md:p-22 lg:pt-54 p-2 md:px-4 pt-10">
     <Outlet />
   </div>
 

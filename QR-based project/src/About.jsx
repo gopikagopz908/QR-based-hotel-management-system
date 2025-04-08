@@ -60,10 +60,10 @@ function About() {
   <div className="w-full flex flex-wrap justify-center gap-6 px-4 lg:px-12 py-8">
   {/* Review Card 1 */}
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
-    <h3 className="text-lg sm:text-xl font-semibold text-red-700 mb-2">
+    <h3 className="text-lg sm:text-xl lg:text-5xl font-semibold text-red-700 mb-2">
       “The best restaurant”
     </h3>
-    <p className="text-gray-600 text-sm sm:text-base">
+    <p className="text-gray-600 text-sm sm:text-base lg:text-4xl">
       Last night, we dined at this place and were simply blown away.
       From the moment we stepped in, we were enveloped in an inviting
       atmosphere and greeted with warm smiles.
@@ -75,7 +75,7 @@ function About() {
           alt="Customer"
           className="w-12 h-12 rounded-full"
         />
-        <h3 className="text-base sm:text-lg font-semibold text-gray-700 ml-3">
+        <h3 className="text-base sm:text-lg lg:text-4xl font-semibold text-gray-700 ml-3">
           John Doe
         </h3>
       </div>
@@ -84,10 +84,10 @@ function About() {
 
   {/* Review Card 2 */}
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
-    <h3 className="text-lg sm:text-xl font-semibold text-red-700 mb-2">
+    <h3 className="text-lg sm:text-xl lg:text-5xl font-semibold text-red-700 mb-2">
       “Simply delicious”
     </h3>
-    <p className="text-gray-600 text-sm sm:text-base">
+    <p className="text-gray-600 text-sm sm:text-base lg:text-4xl">
       This place exceeded my expectations on all fronts. The ambiance
       was cozy and relaxed, making it a perfect venue for our
       anniversary dinner. Each dish was beautifully presented.
@@ -99,7 +99,7 @@ function About() {
           alt="Customer"
           className="w-12 h-12 rounded-full"
         />
-        <h3 className="text-base sm:text-lg font-semibold text-gray-700 ml-3">
+        <h3 className="text-base sm:text-lg lg:text-4xl font-semibold text-gray-700 ml-3">
           Jane Smith
         </h3>
       </div>
@@ -108,10 +108,10 @@ function About() {
 
   {/* Review Card 3 */}
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
-    <h3 className="text-lg sm:text-xl font-semibold text-red-700 mb-2">
+    <h3 className="text-lg sm:text-xl lg:text-5xl font-semibold text-red-700 mb-2">
       “One of a kind restaurant”
     </h3>
-    <p className="text-gray-600 text-sm sm:text-base">
+    <p className="text-gray-600 text-sm sm:text-base lg:text-4xl">
       The culinary experience at this place is second to none. The
       atmosphere is vibrant, and the food is nothing short of
       extraordinary. Highly recommended.
@@ -123,7 +123,7 @@ function About() {
           alt="Customer"
           className="w-12 h-12 rounded-full"
         />
-        <h3 className="text-base sm:text-lg font-semibold text-gray-700 ml-3">
+        <h3 className="text-base sm:text-lg lg:text-4xl font-semibold text-gray-700 ml-3">
           Alex Johnson
         </h3>
       </div>

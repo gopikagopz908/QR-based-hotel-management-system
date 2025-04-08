@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const orderSchema=new mongoose.Schema({
-    user:{
-        type:mongoose.Types.ObjectId,
-        ref:'User',
-        required:true
-    },
+    // user:{
+    //     type:mongoose.Types.ObjectId,
+    //     ref:'User',
+    //     required:true
+    // },
     items:[{
         productId:{
             type:mongoose.Types.ObjectId,
@@ -17,11 +17,7 @@ const orderSchema=new mongoose.Schema({
             required:true
         }
     }],
-    date:{
-        type:Date,
-        default:Date.now,
-        required:true
-    },
+    
     paymentMethod:{
         type:String,
         required:true
@@ -32,6 +28,11 @@ const orderSchema=new mongoose.Schema({
     total:{
         type:Number,
         required:true
+    },
+    status:{
+        type:String,
+        enum:["placed","readyToServe","delivered"],
+        default:"placed"
     }
 },
     {

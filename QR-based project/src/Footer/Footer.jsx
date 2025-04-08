@@ -336,40 +336,40 @@ const Footer = ({ className }) => {
       <div className="w-5/6 mx-auto px-6 ">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 items-center ">
           {/* Logo and Company Description */}
-          <div className="space-y-2 ">
-            <div className="flex items-center space-x-2">
+          <div className="space-y-12 ">
+            <div className="flex items-center space-x-12">
               <div className="w-8 h-8 border-2 border-white rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 border-t-2 border-r-2 border-white transform rotate-45" />
               </div>
-              <h2 className="text-4xl  lg:text-8xl font-serif italic">favor Bliss</h2>
+              <h2 className="text-4xl  lg:text-8xl font-serif italic">flavor Bliss</h2>
             </div>
-            <p className="text-gray-400 text-4xl leading-relaxed">
-              In the new era of technology we look a in the future with certainty and pride to for our company and.
+            <p className="text-sm lg:text-4xl text-gray-400 leading-relaxed">
+            In the new era of technology we look a in the future with certainty and pride to for our company and.
             </p>
-            <div className="flex space-x-3">
+            <div className="flex space-x-3 ">
               {socialLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
                   aria-label={link.ariaLabel}
-                  className="bg-red-600 p-2 rounded-full hover:bg-red-700 transition-colors"
+                  className="bg-red-600 p-4 rounded-full hover:bg-red-700 transition-colors "
                 >
-                  {React.createElement(link.icon, { className: "h-4 w-4 text-white" })}
+                  {React.createElement(link.icon, { className: "lg:h-10 lg:w-10 text-white" })}
                 </a>
               ))}
             </div>
           </div>
 
           {/* Pages */}
-          <div className="space-y-2">
+          <div className="space-y-12">
             <h3 className="text-4xl  lg:text-6xl font-medium">Pages</h3>
             <nav>
-              <ul className="space-y-4">
+              <ul className="space-y-12">
                 {mainLinks.map((link, index) => (
                   <li key={index}>
                     <Link
                       to={link.href}
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors lg:text-5xl "
                     >
                       {link.name}
                     </Link>
@@ -380,15 +380,15 @@ const Footer = ({ className }) => {
           </div>
 
           {/* Utility Pages */}
-          <div className="space-y-2">
+          <div className="space-y-12">
             <h3 className="text-4xl  lg:text-6xl font-medium">Utility Pages</h3>
             <nav>
-              <ul className="space-y-4">
+              <ul className="space-y-12">
                 {utilityLinks.map((link, index) => (
                   <li key={index}>
                     <Link
                       to={link.href}
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors lg:text-5xl"
                     >
                       {link.name}
                     </Link>
@@ -399,7 +399,7 @@ const Footer = ({ className }) => {
           </div>
 
           {/* Instagram Section */}
-          <div className="space-y-2 ">
+          <div className="space-y-12 ">
             <h3 className="text-4xl lg:text-6xl font-medium ">Follow Us On Instagram</h3>
             <div className="grid grid-cols-2 gap-2">
               {instagramImages.map((image, index) => (

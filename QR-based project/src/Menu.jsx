@@ -379,7 +379,7 @@ const Menu = () => {
   const total = selectedItems.reduce((sum, item) => sum + item.price, 0);
 
   return (
-    <div className="mt-24 space-y-16 md:px-4 sm:px-8   h-full ">
+    <div className="mt-24 space-y-16 md:px-4 sm:px-8   h-full relative ">
 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl 2xl:text-9xl font-bold text-center text-gray-800 font-primary">
 🍽️ Our Menu
       </h1>
@@ -393,7 +393,7 @@ const Menu = () => {
           <button
             key={category}
             onClick={() => setActiveCategory(category)}
-            className={`min-w-[100px] px-5 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
+            className={`md:min-w-[200px] min-w-[100px] px-5 py-2 md:py-4 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
               activeCategory === category
                 ? "bg-red-800 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -406,8 +406,8 @@ const Menu = () => {
 
       {/* Menu Grid */}
 
-<div className="w-full h-full flex  justify-center items-center ">
-<div className=" w-full md:max-w-3/5 grid gap-y-24 sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-4   justify-items-center mt-48 ">
+<div className="w-full h-full flex  md:justify-center items-center  ">
+<div className=" w-full md:max-w-3/5    grid gap-y-24 sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-4   justify-items-center mt-48 ">
       {filteredItems.map((item) => {
             const isSelected = selectedItems.some((i) => i.id === item.id);
             return (
@@ -455,7 +455,7 @@ const Menu = () => {
 
       {/* Floating Bottom Bar */}
       {selectedItems.length > 0 && (
-        <div className="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 bg-white shadow-xl border rounded-2xl px-4 sm:px-8 py-4 w-[95%] sm:w-[90%] max-w-5xl flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+        <div className="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 bg-white shadow-xl border rounded-2xl px-4 sm:px-8 py-4 md:h-52 w-[95%] sm:w-[90%] max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
           <div className="text-center sm:text-left">
             <h2 className="font-medium text-gray-700 text-2xl sm:text-3xl">
               Selected Items: <span className="font-bold">{selectedItems.length}</span>
