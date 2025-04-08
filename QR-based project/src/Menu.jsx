@@ -379,11 +379,11 @@ const Menu = () => {
   const total = selectedItems.reduce((sum, item) => sum + item.price, 0);
 
   return (
-    <div className="mt-24 space-y-16 px-4 sm:px-8   h-full ">
-      <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold text-center text-gray-800 font-primary ">
-        🍽️ Our Menu
+    <div className="mt-24 space-y-16 md:px-4 sm:px-8   h-full ">
+<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl 2xl:text-9xl font-bold text-center text-gray-800 font-primary">
+🍽️ Our Menu
       </h1>
-      <p className="text-base sm:text-lg md:text-2xl text-gray-700 leading-relaxed tracking-wide font-light text-center font-poppins max-w-5xl mx-auto">
+      <p className="text-base sm:text-lg md:text-2xl lg:text-4xl text-gray-700 leading-relaxed tracking-wide font-light text-center font-poppins max-w-6xl mx-auto">
         We take every detail into account, bringing you the finest ingredients and flavors to craft an unforgettable dining experience.
       </p>
 
@@ -406,8 +406,8 @@ const Menu = () => {
 
       {/* Menu Grid */}
 
-<div className="w-full h-full flex justify-center items-center ">
-<div className=" w-full max-w-3/5 grid gap-y-8  grid-cols-4  justify-items-center mt-48 ">
+<div className="w-full h-full flex  justify-center items-center ">
+<div className=" w-full md:max-w-3/5 grid gap-y-24 sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-4   justify-items-center mt-48 ">
       {filteredItems.map((item) => {
             const isSelected = selectedItems.some((i) => i.id === item.id);
             return (
