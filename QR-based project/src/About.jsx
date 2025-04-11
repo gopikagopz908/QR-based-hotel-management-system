@@ -28,7 +28,7 @@ function About() {
         </div>
       </div> */}
       <div className="flex flex-col md:flex-row items-center justify-center px-4 md:px-6 py-10 gap-8 bg-gray-100 min-h-screen">
-  {/* Image Section */}
+ 
   <div className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[600px] lg:h-[1500px] lg:w-[1500px] flex justify-center items-center overflow-hidden">
     <img
       src="https://i.pinimg.com/736x/0c/e6/5c/0ce65c400915efb0d7439e271c2e231f.jpg"
@@ -37,7 +37,7 @@ function About() {
     />
   </div>
 
-  {/* Text Section */}
+ 
   <div className="w-full md:w-1/2 text-center md:text-left">
     <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-9xl font-bold text-gray-800 mb-6 font-primary leading-tight">
       We serve wholesome, nutritious meals for your family.
@@ -58,7 +58,7 @@ function About() {
   </h1>
 
   <div className="w-full flex flex-wrap justify-center gap-6 px-4 lg:px-12 py-8">
-  {/* Review Card 1 */}
+ 
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
     <h3 className="text-lg sm:text-xl lg:text-5xl font-semibold text-red-700 mb-2">
       “The best restaurant”
@@ -82,7 +82,6 @@ function About() {
     </div>
   </div>
 
-  {/* Review Card 2 */}
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
     <h3 className="text-lg sm:text-xl lg:text-5xl font-semibold text-red-700 mb-2">
       “Simply delicious”
@@ -106,7 +105,7 @@ function About() {
     </div>
   </div>
 
-  {/* Review Card 3 */}
+ 
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
     <h3 className="text-lg sm:text-xl lg:text-5xl font-semibold text-red-700 mb-2">
       “One of a kind restaurant”

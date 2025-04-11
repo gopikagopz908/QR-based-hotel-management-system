@@ -110,15 +110,15 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Phone Bar */}
+     
       <header className="bg-gray-600 p-3 text-white fixed top-0 left-0 w-full z-30 text-sm flex justify-center">
         <p>Phone: (+23) 787655349</p>
       </header>
 
-      {/* Main Nav */}
+     
       <nav className="bg-white md:py-10 fixed top-6 w-full z-20 shadow-md">
         <div className="w-full mx-auto flex justify-between items-center md:px-40 px-4 py-3">
-          {/* Left - Logo and Brand */}
+          
           <div className="flex items-center space-x-3">
             <Link to="/" className="rounded-full overflow-hidden">
               <img
@@ -137,7 +137,7 @@ const Navbar = () => {
             </h1>
           </div>
 
-          {/* Hamburger Icon for Mobile */}
+          
           <button
             className="md:hidden text-gray-700 focus:outline-none"
             onClick={toggleMenu}
@@ -160,14 +160,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation Menu */}
           <ul className="hidden md:flex space-x-32 items-center">
-            {/* <li>
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-red-500 font-bold text-5xl transition"
-              >
-                Home
-              </Link>
-            </li> */}
+            
             <li>
               <Link
                 to="/"

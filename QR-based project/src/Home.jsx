@@ -58,12 +58,7 @@ function Home() {
             "Savor exquisite flavors and create lasting memories in our warm,
             culinary retreat." 🍽️✨
           </p>
-          {/* <button
-            type="button"
-            className="lg:px-26 lg:py-12 sm:px-8 py-2 sm:py-3 mt-6 text-black border rounded-full shadow-md transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95 font-bold font-sans lg:text-4xl"
-          >
-            Explore Menu
-          </button> */}
+          
           <Link
             to="/menu"
             className="inline-block text-center lg:px-26 lg:py-12 sm:px-8 py-2 sm:py-3 mt-6 text-black border rounded-full shadow-md transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95 font-bold font-sans lg:text-4xl"

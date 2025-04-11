@@ -11,9 +11,8 @@ export const addOrderService = async (paymentMethod, items, total) => {
     paymentMethod,
     total,
   });
-
   for (let item of items) {
-    const product = await Products.findById(item.productId);
+    const product = await Products.findById(item.id);
     if (!product) {
       throw new CustomError(`insufficient quantity for ${product.name}`);
     }
@@ -32,7 +31,6 @@ export const addOrderService = async (paymentMethod, items, total) => {
     //create order with rayzorpay
     try {
       const razorpayOrder = await razorpayInstance.orders.create(options);
-      console.log("hgtffdgfd")
       order.razorpayOrderId = razorpayOrder.id;
 
       await order.save();
@@ -59,7 +57,6 @@ export const verifyPaymentService = async (paymentId, razorpayOrderId) => {
 
       return true;
     } else {
-        console.log('hiii')
       throw new CustomError("Payment verification failed");
     }
   } catch (error) {

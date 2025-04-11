@@ -302,7 +302,7 @@ const Menu = () => {
       price: 150,
       category: "Desserts",
       description: "Warm, fudgy brownie topped with melted chocolate.",
-      image: "https://i.pinimg.com/736x/99/50/c8/9950c8a0422da4d8afac124be6f2fdf9.jpg",
+      image: "https://i.pinimg.com/474x/4e/54/18/4e5418327e8e1bcacdeda173e0143c4b.jpg",
     },
     {
       id: 6,
@@ -384,16 +384,15 @@ const Menu = () => {
 🍽️ Our Menu
       </h1>
       <p className="text-base sm:text-lg md:text-2xl lg:text-4xl text-gray-700 leading-relaxed tracking-wide font-light text-center font-poppins max-w-6xl mx-auto">
-        We take every detail into account, bringing you the finest ingredients and flavors to craft an unforgettable dining experience.
+        "We take every detail into account, bringing you the finest ingredients and flavors to craft an unforgettable dining experience".
       </p>
 
-      {/* Category Buttons */}
       <div className="flex flex-wrap gap-4 justify-center">
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setActiveCategory(category)}
-            className={`md:min-w-[200px] min-w-[100px] px-5 py-2 md:py-4 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
+            className={`md:min-w-[200px] min-w-[150px] px-2 py-2 md:py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base lg:text-4xl ${
               activeCategory === category
                 ? "bg-red-800 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -404,7 +403,6 @@ const Menu = () => {
         ))}
       </div>
 
-      {/* Menu Grid */}
 
 <div className="w-full h-full flex  md:justify-center items-center  ">
 <div className=" w-full md:max-w-3/5    grid gap-y-24 sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-4   justify-items-center mt-48 ">
@@ -453,19 +451,18 @@ const Menu = () => {
 </div>
   
 
-      {/* Floating Bottom Bar */}
       {selectedItems.length > 0 && (
         <div className="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 bg-white shadow-xl border rounded-2xl px-4 sm:px-8 py-4 md:h-52 w-[95%] sm:w-[90%] max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
           <div className="text-center sm:text-left">
-            <h2 className="font-medium text-gray-700 text-2xl sm:text-3xl">
+            <h2 className="font-medium text-gray-700 text-2xl sm:text-6xl">
               Selected Items: <span className="font-bold">{selectedItems.length}</span>
             </h2>
-            <p className="text-gray-600 text-lg font-semibold">
+            <p className="text-gray-600 text-lg lg:text-6xl font-semibold">
               Total: ₹{total}
             </p>
           </div>
           <button
-            className="bg-red-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition text-lg sm:text-2xl font-primary"
+            className="bg-red-800 text-white px-4 py-2 lg:px-8 lg:py-8 rounded-full font-semibold hover:bg-red-700 transition text-lg sm:text-2xl lg:text-5xl font-primary"
             onClick={() => navigate("/orders", { state: { selectedItems, total } })}
           >
             Place Order

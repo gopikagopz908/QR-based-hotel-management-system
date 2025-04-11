@@ -38,7 +38,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-12 pt-24 pb-20">
       <div className="w-full max-w-[100%] sm:max-w-[95%] md:max-w-[90%] lg:max-w-[1800px] xl:max-w-[2000px] 2xl:max-w-[2300px]">
-        {/* Heading */}
+        
         <div className="text-center mb-14 px-2">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-9xl font-serif font-bold text-gray-800">
             Contact Us
@@ -48,13 +48,13 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Form */}
+        
         <div className="bg-white rounded-3xl shadow-2xl w-full p-6 sm:p-10 md:p-16 lg:p-24 xl:p-32 2xl:p-40">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-16 mb-10">
-              {/* Name */}
+             
               <div>
-                <label className="block text-gray-700 text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-medium mb-3">
+                <label className="block text-gray-700 text-lg sm:text-xl lg:text-4xl  font-medium mb-3">
                   Name
                 </label>
                 <input
@@ -63,14 +63,13 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Enter your name"
-                  className="w-full px-6 py-5 text-lg sm:text-xl lg:text-2xl 2xl:text-3xl rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                  className="w-full px-6 py-5 text-lg sm:text-xl lg:text-4xl  rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
                   required
                 />
               </div>
 
-              {/* Email */}
               <div>
-                <label className="block text-gray-700 text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-medium mb-3">
+                <label className="block text-gray-700 text-lg sm:text-xl lg:text-4xl  font-medium mb-3">
                   Email
                 </label>
                 <input
@@ -85,9 +84,8 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Subject */}
             <div className="mb-8">
-              <label className="block text-gray-700 text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-medium mb-3">
+              <label className="block text-gray-700 text-lg sm:text-xl lg:text-4xl  font-medium mb-3">
                 Subject
               </label>
               <input
@@ -101,9 +99,8 @@ const Contact = () => {
               />
             </div>
 
-            {/* Message */}
             <div className="mb-12">
-              <label className="block text-gray-700 text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-medium mb-3">
+              <label className="block text-gray-700 text-lg sm:text-xl lg:text-4xl  font-medium mb-3">
                 Message
               </label>
               <textarea
@@ -117,11 +114,10 @@ const Contact = () => {
               ></textarea>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-red-800 hover:bg-red-700 text-white py-5 lg:py-6 2xl:py-7 text-lg sm:text-xl lg:text-2xl 2xl:text-3xl rounded-full font-semibold transition-colors duration-300 disabled:opacity-70"
+              className="w-full bg-red-800 hover:bg-red-700 text-white py-5 lg:py-6 2xl:py-7 text-lg sm:text-xl lg:text-4xl  rounded-full font-semibold transition-colors duration-300 disabled:opacity-70"
             >
               {isSubmitting ? "Sending..." : "Send Message"}
             </button>

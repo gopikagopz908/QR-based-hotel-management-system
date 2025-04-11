@@ -13,12 +13,19 @@ import About from './About'
 import Contact from './Contact'
 import Menu from './Menu'
 import Orders from './pages/orders'
+import AdminLayout from './pages/Admin/AdminLayout'
+import DashBoard from './pages/Admin/DashBoard'
+import Foods from './pages/Foods'
 
 function App() {
 
   return (
     <Router>
       <Routes>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<DashBoard/>}/>
+           <Route path="foods" element={<Foods/>}/>
+        </Route>
         <Route element={<Layout />}>
           <Route   index  element={<Home />} />
           <Route path="/about" element={<About/>}/>

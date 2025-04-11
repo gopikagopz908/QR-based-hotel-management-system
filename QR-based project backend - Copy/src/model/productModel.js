@@ -16,9 +16,14 @@ const productSchema=new mongoose.Schema({
   
    category: {
     type: String,
-    enum: ['nonVeg', 'Veg', 'Desserts', 'Drinks'], // Allowed categories
+    enum: ['nonVeg', 'Veg', 'Desserts', 'Drinks'], 
     required: true
   },
+  image:{
+    type:String,
+    required:true
+  }
+  
 })
 
 const Products=mongoose.model("Products",productSchema)
