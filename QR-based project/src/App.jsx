@@ -16,7 +16,8 @@ import Orders from './pages/orders'
 import AdminLayout from './pages/Admin/AdminLayout'
 import DashBoard from './pages/Admin/DashBoard'
 import Foods from './pages/Foods'
-
+import Table from './pages/Admin/Table'
+// import AdminOrders from './pages/Admin/Orders'
 function App() {
 
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<DashBoard/>}/>
            <Route path="foods" element={<Foods/>}/>
+           <Route path="tables" element={<Table/>}/>
+           {/* <Route path="orders" element={<AdminOrders/>}/> */}
         </Route>
         <Route element={<Layout />}>
           <Route   index  element={<Home />} />

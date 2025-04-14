@@ -248,10 +248,14 @@
 import React, { useState } from "react";
 import Card from "./components/card/Card";
 import { useNavigate } from "react-router-dom";
+// import { useQuery } from "@tanstack/react-query";
+// import axiosInstance from "./Api/axiosInstance";
 
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedItems, setSelectedItems] = useState([]);
+  // const[reload,setReload]=useState("")
+
   const navigate = useNavigate();
 
   const toggleSelect = (item) => {
@@ -377,6 +381,30 @@ const Menu = () => {
       : menuItems.filter((item) => item.category === activeCategory);
 
   const total = selectedItems.reduce((sum, item) => sum + item.price, 0);
+//   const {
+//     data,isLoading,isError,error
+//   }=useQuery({
+//     queryKey:["foods",reload],
+//     queryFn:async()=>{
+//       const response=await axiosInstance.get("/products")
+//       console.log('hiii')
+      
+//       return response.data
+//     }
+//   })
+// if(isLoading) return <h1 className="mt-24 ml-24">Loading</h1>
+// if(isError) return(
+//   <>
+
+
+// <h1 className="mt-24 ml-24">Error to load data</h1>
+ 
+//   <button onClick={()=>setReload("hii")}>
+//   reload
+// </button>
+// </>
+// )
+
 
   return (
     <div className="mt-24 space-y-16 md:px-4 sm:px-8   h-full relative ">

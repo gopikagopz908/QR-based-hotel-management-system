@@ -1,6 +1,7 @@
 import { LayoutDashboard, LogOut, ShoppingCart, Table, Users, UtensilsCrossed } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
+
 const Sidebar = () => {
     const location = useLocation();
     
@@ -16,7 +17,7 @@ const Sidebar = () => {
         icon: <UtensilsCrossed className="w-5 h-5" /> 
       },
       { 
-        path: "/tables", 
+        path: "tables", 
         name: "Tables", 
         icon: <Table className="w-5 h-5" /> 
       },
@@ -26,7 +27,7 @@ const Sidebar = () => {
         icon: <Users className="w-5 h-5" /> 
       },
       { 
-        path: "/orders", 
+        path: "orders", 
         name: "Orders", 
         icon: <ShoppingCart className="w-5 h-5" /> 
       },
@@ -45,6 +46,7 @@ const Sidebar = () => {
             <h1 className="text-xl  lg:text-3xl font-primary text-red-800">Flavor Bliss</h1>
           </div>
         </div>
+
         
         {/* Navigation */}
         <nav className="flex-1 py-6 ">

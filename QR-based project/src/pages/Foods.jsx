@@ -160,6 +160,11 @@ const Foods = () => {
           </button>
         ))}
       </div>
+      <div className="flex justify-end  " >
+  <button className="bg-red-800 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded  ">
+    Add Items
+  </button>
+</div>
 
       {/* Table Display */}
       <div className="overflow-x-auto mt-10 px-4">

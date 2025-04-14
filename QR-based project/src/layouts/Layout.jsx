@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Outlet } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
-import Footer from '../Footer/Footer'
+// import Footer from '../Footer/Footer'
 
 function Layout(){
     return(
@@ -18,7 +18,7 @@ function Layout(){
   </div>
 
   {/* Footer always at the bottom */}
-  <Footer />
+  {/* <Footer /> */}
 </div>
 
 
