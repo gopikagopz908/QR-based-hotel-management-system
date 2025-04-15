@@ -1,16 +1,16 @@
 import QRCode from 'qrcode';
 import Products from '../model/productModel.js';
 
-export const generateQRCodeService = async (url, data) => {
-  if (!url || !data) {
-    throw new Error('Both "url" and "data" are required.');
-  }
+// export const generateQRCodeService = async (url, data) => {
+//   if (!url || !data) {
+//     throw new Error('Both "url" and "data" are required.');
+//   }
 
-  const qrContent = JSON.stringify({ url, data });
-  const qrCodeDataURL = await QRCode.toDataURL(qrContent);
+//   const qrContent = JSON.stringify({ url, data });
+//   const qrCodeDataURL = await QRCode.toDataURL(qrContent);
 
-  return qrCodeDataURL;
-};
+//   return qrCodeDataURL;
+// };
 
 // export const getAllProductService = async ({
 //   category,

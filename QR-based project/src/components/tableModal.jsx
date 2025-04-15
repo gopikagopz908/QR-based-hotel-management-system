@@ -8,12 +8,12 @@ const TableModal = ({ onClose }) => {
 
 
   const handleSubmit = async() => {
-  console.log(capacity,"ebrwtbtbreber",tableNumber)
-  const res=await generateQr(tableNumber) 
+  const res=await generateQr(tableNumber,capacity) 
   
     setCapacity('');
     setTableNumber('');
     onClose();
+    window.location.reload();
   };
 
 

@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import TableModal from '../../components/tableModal'
 import useGenerateQr from '../../hooks/useGenerateQr'
+import useGetQr from '../../hooks/useGetQr'
+import {EyeIcon} from 'lucide-react'
+import ImageModal from '../../components/qrModal'
 
 function Table() {
-  const tableData = [
-    { id: 1, capacity: 4 },
-    { id: 2, capacity: 6 },
-    { id: 3, capacity: 2 },
-    { id: 4, capacity: 8 },
-  ]
+  
 const {data,generateQr}=useGenerateQr()
-
+const [grImage,setGrimage]=useState("")
 useEffect(()=>{
 generateQr(33)
 },[])
 
 
 
-
-const[isModal,setIsModal]=useState(false) 
+const[isQrcode,setQrcode]=useState(false)
+const[isModal,setIsModal]=useState(false)
+const{list,loading}=useGetQr() 
 function openModal(){
     setIsModal(true)
 
@@ -26,39 +25,58 @@ function openModal(){
 function closeModal(){
   setIsModal(false)
 }
+function qropenModal(data){
+  setGrimage(data)
 
+  setQrcode(true)
+  
+}
+function qrcloseModal(){
+  setQrcode(false)
+}
+console.log(grImage,"gopzzz")
   return (
     
     <div className="p-18 ">
       <div className='w-full  flex justify-end mb-14'>
         <button  onClick={openModal}
-         className='bg-amber-600'>add</button>
+                   className="bg-red-800 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded"
+>add</button>
  
       </div>
         
       <table className="min-w-full border border-gray-300 text-sm">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border px-4 py-2 text-left">Table ID</th>
-            <th className="border px-4 py-2 text-left">Capacity</th>
+            <th className="border px-4 py-2 text-left">Table No</th>
+
+            <th className="border px-4 py-2 text-left">Capacity</th> 
+            <th className="border px-4 py-2 text-left">View</th>              
+             
           </tr>
         </thead>
         <tbody>
-          {tableData.map((table) => (
+          {list.map((table) => (
             <tr key={table.id} className="hover:bg-gray-100">
-              <td className="border px-4 py-2">{table.id}</td>
+              <td className="border px-4 py-2">{table.tableNo}</td>
               <td className="border px-4 py-2">{table.capacity}</td>
+
+              <td onClick={()=>qropenModal(table.qrcode)}
+              className="border px-4 py-2"><EyeIcon/></td>
+
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="flex flex-wrap gap-4">
-        {
-          <img src={data}  className="w-32 h-32 border"/>
-        }
-      </div>
+      {/* <div className="flex flex-wrap gap-4">
+        
+      </div> */}
       {isModal  &&
       <TableModal onClose={closeModal}/>
+      }
+      {
+        isQrcode &&
+        <ImageModal imageUrl={grImage} onClose={qrcloseModal}/>
       }
 
     </div>
