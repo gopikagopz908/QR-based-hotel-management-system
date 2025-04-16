@@ -41,7 +41,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="flex justify-center items-center w-full h-screen  ">
-      <div className="w-full h-full bg-[url('/img.png')] bg-red-700 bg-cover  rounded-lg shadow-lg">
+      <div className="w-full h-full bg-[url('/img.png')]  bg-cover  rounded-lg shadow-lg">
       {/* <div className="w-full h-full bg-blue-700 bg-cover  rounded-lg shadow-lg"> */}
         {/* <div className="w-full h-[90%] max-w-full relative">
         <img
