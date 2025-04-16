@@ -257,18 +257,18 @@ const Menu = () => {
   const [activeCategory, setActiveCategory] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
     const[reload,setReload]=useState("")
-// data kiteele ninakk refrech cheyanel kodukam ille oyivakiko its up to you ale
   const navigate = useNavigate();
 
   const toggleSelect = (item) => {
-    const isSelected = selectedItems.some((i) => i.id === item.id);
+    console.log(selectedItems,"select in items")
+    const isSelected = selectedItems.some((i) => i._id === item._id);
     if (isSelected) {
-      setSelectedItems(selectedItems.filter((i) => i.id !== item.id));
+      setSelectedItems(selectedItems.filter((i) => i._id !== item._id));
     } else {
       setSelectedItems([...selectedItems, item]);
     }
   };
-// ath avde irikte dblu ketam vokey
+
   
     // {
     //   id: 1,
@@ -276,7 +276,7 @@ const Menu = () => {
     //   price: 250,
     //   category: "Non-Veg",
     //   description: "Juicy, tender grilled chicken with aromatic spices.",
-    //   image: "https://i.pinimg.com/736x/da/a6/32/daa632ed5f4af5cd01ef2ac136bb2ef0.jpg",
+      // image: "https://i.pinimg.com/736x/da/a6/32/daa632ed5f4af5cd01ef2ac136bb2ef0.jpg",
     // },
     // {
     //   id: 2,
@@ -284,7 +284,7 @@ const Menu = () => {
     //   price: 200,
     //   category: "Veg",
     //   description: "Marinated paneer cubes grilled to perfection.",
-    //   image: "https://i.pinimg.com/736x/16/05/1f/16051fea26783e6d91f02877b0cc7404.jpg",
+      // image: "https://i.pinimg.com/736x/16/05/1f/16051fea26783e6d91f02877b0cc7404.jpg",
     // },
     // {
     //   id: 3,
@@ -292,7 +292,7 @@ const Menu = () => {
     //   price: 300,
     //   category: "Non-Veg",
     //   description: "Classic Italian pizza topped with fresh basil and cheese.",
-    //   image: "https://i.pinimg.com/736x/fa/8c/96/fa8c96b97070b002f53e1c6f098291c6.jpg",
+      //  image: "https://i.pinimg.com/736x/fa/8c/96/fa8c96b97070b002f53e1c6f098291c6.jpg",
     // },
     // {
     //   id: 4,
@@ -300,7 +300,7 @@ const Menu = () => {
     //   price: 350,
     //   category: "Non-Veg",
     //   description: "Rich and creamy tomato-based curry with tender chicken.",
-    //   image: "https://i.pinimg.com/736x/e2/63/e5/e263e50bc39528becbd777a271e297af.jpg",
+      //  image: "https://i.pinimg.com/736x/e2/63/e5/e263e50bc39528becbd777a271e297af.jpg",
     // },
     // {
     //   id: 5,
@@ -308,7 +308,7 @@ const Menu = () => {
     //   price: 150,
     //   category: "Desserts",
     //   description: "Warm, fudgy brownie topped with melted chocolate.",
-    //   image: "https://i.pinimg.com/474x/4e/54/18/4e5418327e8e1bcacdeda173e0143c4b.jpg",
+      //  image: "https://i.pinimg.com/474x/4e/54/18/4e5418327e8e1bcacdeda173e0143c4b.jpg",
     // },
     // {
     //   id: 6,
@@ -316,7 +316,7 @@ const Menu = () => {
     //   price: 120,
     //   category: "Desserts",
     //   description: "Soft, spongy, and soaked in rich sugar syrup.",
-    //   image: "https://i.pinimg.com/736x/e3/16/6d/e3166d18c10fc639b16fe3a1de8f9af9.jpg",
+      // image: "https://i.pinimg.com/736x/e3/16/6d/e3166d18c10fc639b16fe3a1de8f9af9.jpg",
     // },
     // {
     //   id: 7,
@@ -332,7 +332,7 @@ const Menu = () => {
     //   price: 120,
     //   category: "Drinks",
     //   description: "Chilled coffee with a smooth and creamy texture.",
-    //   image: "https://i.pinimg.com/736x/3c/4e/6d/3c4e6d79f4525c4924f57b2db7e95433.jpg",
+      // image: "https://i.pinimg.com/736x/3c/4e/6d/3c4e6d79f4525c4924f57b2db7e95433.jpg",
     // },
     // {
     //   id: 9,
@@ -340,7 +340,7 @@ const Menu = () => {
     //   price: 120,
     //   category: "Drinks",
     //   description: "Chilled coffee with a smooth and creamy texture.",
-    //   image: "https://i.pinimg.com/736x/a7/c2/55/a7c255c3e78d2d36e70a36f059e94eac.jpg",
+      //  image: "https://i.pinimg.com/736x/a7/c2/55/a7c255c3e78d2d36e70a36f059e94eac.jpg",
     // },
     // {
     //   id: 10,
@@ -348,7 +348,7 @@ const Menu = () => {
     //   price: 150,
     //   category: "Veg",
     //   description: "Chilled noodles with eggs.",
-    //   image: "https://i.pinimg.com/736x/8e/a1/38/8ea138d9fedca1f76cf4310b00e6c452.jpg",
+      //  image: "https://i.pinimg.com/736x/8e/a1/38/8ea138d9fedca1f76cf4310b00e6c452.jpg",
     // },
     // {
     //   id: 11,
@@ -356,7 +356,7 @@ const Menu = () => {
     //   price: 180,
     //   category: "Veg",
     //   description: "Crispy veggie balls tossed in a tangy Indo-Chinese sauce.",
-    //   image: "https://i.pinimg.com/736x/19/cf/e3/19cfe3d8cf5c73220ffe80885f63645c.jpg",
+      //  image: "https://i.pinimg.com/736x/19/cf/e3/19cfe3d8cf5c73220ffe80885f63645c.jpg",
     // },
     // {
     //   id: 15,
@@ -364,7 +364,7 @@ const Menu = () => {
     //   price: 220,
     //   category: "Veg",
     //   description: "Traditional thali with rice, sambar, rasam, poriyal, kootu, papad, and pickle.",
-    //   image: "https://i.pinimg.com/736x/ae/fc/a3/aefca354bdbeb7b74b3d41e0857ec966.jpg",
+      //  image: "https://i.pinimg.com/736x/ae/fc/a3/aefca354bdbeb7b74b3d41e0857ec966.jpg",
     // },
    
 
@@ -372,6 +372,7 @@ const Menu = () => {
      {value:"Drinks",name:'Drinks'}, {value:"Desserts",name:'Desserts'}];
   const categoryColors = {
     Veg: "bg-green-500",
+
     "Non-Veg": "bg-yellow-500",
     Drinks: "bg-pink-500",
     Desserts: "bg-purple-500",
@@ -419,7 +420,6 @@ const Menu = () => {
         ))}
       </div>
 
-//ok then where is the items
 <div className="w-full h-full flex  md:justify-center items-center  ">
 <div className=" w-full md:max-w-3/5    grid gap-y-24 sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-4   justify-items-center mt-48 ">
       {isLoading?<CardSkeleton/> :isError || products.length===0?<h1>No data found</h1>

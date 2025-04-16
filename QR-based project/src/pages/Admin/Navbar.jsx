@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AdminLoginModal from '../../components/loginPageModal';
 
 const AdminNavbar = () => {
     const[openModal,setOpenModal]=useState(false)
@@ -21,7 +22,7 @@ const AdminNavbar = () => {
       <button onClick={openLogin} className="bg-red-800 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition duration-300">
         Login
       </button>
-      {openModal && <AdminNavbar onClose={closeLogin}/>}
+      {openModal && <AdminLoginModal onClose={closeLogin}/>}
     </nav>
     
   );

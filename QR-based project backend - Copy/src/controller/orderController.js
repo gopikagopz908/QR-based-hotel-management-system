@@ -1,15 +1,16 @@
 import asyncHandler from "../Middlewares/asyncHandler.js";
 import { addOrderService, verifyPaymentService } from "../Service/orderService.js";
 import { STATUS } from "../utils/constant.js";
-//dont worry we can check it in the payment
-//set akam already ready akeethalle vala thatalo mutalo koduthall math
-//nee ipo mainn yitullla crud motham coplete ak athavumpo kure pani kuranju okk? hh good gir;
+
 export const addOrder=asyncHandler(async(req,res)=>{
     // const userId=req.user._id;
     const{paymentMethod,items,total}=req.body;
+    console.log(items,"nhgydgyg")
+  
+
   
    const {order,razorpayOrderId} =await addOrderService(paymentMethod,items,total)
-   console.log(order,razorpayOrderId)
+   console.log(order,razorpayOrderId,"gopzzz")
 
     res.status(200).json({
         status:STATUS.SUCCESS,
@@ -38,7 +39,19 @@ export const verifyPayment = asyncHandler(async (req, res) => {
     }
   });
   
+// export const showOrders=asyncHandler(async(req,res)=>{
+//   const userId=req.user._id;
+//   const{page}=req.query;
 
+//   const{orders,pagination}=await showOrderService(userId,parseInt(page,10)||1,10)
+//   const message=orders.length?"orders retrieved successfully":"no orders found";
+//   res.status(200).json({
+//     status:STATUS.SUCCESS,
+//     message,
+//     orders,
+//     pagination
+//   })
+// })
 
 
 

@@ -6,7 +6,7 @@ import AdminNavbar from "./Navbar";
 
 const AdminLayout = () => {
   return (
-    <nav className="h-screen">
+    <div className="h-screen">
     <AdminNavbar/>
     <div className="flex h-screen bg-gray-100">
       <Sidebar/>
@@ -14,7 +14,7 @@ const AdminLayout = () => {
         <Outlet/>
       </main>
     </div>
-    </nav>
+    </div>
   );
 };
 
