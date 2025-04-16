@@ -40,12 +40,7 @@ const Sidebar = () => {
     return (
       <div className="w-60 bg-stone-300 text-gray-800 min-h-full flex flex-col shadow-md">
         {/* Logo */}
-        <div className="p-4 border-b border-blue-100">
-          <div className="flex items-center gap-2">
-            <img src="2.jpg" alt="Logo" className="w-8 h-8 bg-stone-300" />
-            <h1 className="text-xl  lg:text-3xl font-primary text-red-800">Flavor Bliss</h1>
-          </div>
-        </div>
+        
 
         
         {/* Navigation */}

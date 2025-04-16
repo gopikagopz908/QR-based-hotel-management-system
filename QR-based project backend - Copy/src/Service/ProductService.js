@@ -1,4 +1,5 @@
 import Products from "../model/productModel.js";
+import CustomError from "../utils/customError.js";
 
 
 export const addProductService=async(data,imagePath)=>{
@@ -16,4 +17,28 @@ export const addProductService=async(data,imagePath)=>{
      const savedProduct=await newProduct.save()
 
      return savedProduct;
+}
+
+
+export const editProductService=async(_id,updateItems)=>{
+   const existing=await Products.findById(_id)
+
+   if(!existing){
+    throw new CustomError("product is unavailable",400)
+   }
+
+   const data=await Products.findByIdAndUpdate({_id,isDelete:false},{$set:{...updateItems}},{new:true})
+   return data
+}
+
+export const deleteProductService=async(id)=>{
+    const existingProduct=await Products.findById(id)
+    if(!existingProduct){
+        throw new CustomError("product not found",404)
+    }
+    return await Products.findByIdAndUpdate(
+        id,
+        {isDelete:true},
+        {new:true}
+    )
 }

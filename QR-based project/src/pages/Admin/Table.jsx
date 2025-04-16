@@ -1,58 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import TableModal from '../../components/tableModal'
-import useGenerateQr from '../../hooks/useGenerateQr'
-import useGetQr from '../../hooks/useGetQr'
-import {EyeIcon} from 'lucide-react'
-import ImageModal from '../../components/qrModal'
+import React, { useEffect, useState } from "react";
+import TableModal from "../../components/tableModal";
+import useGenerateQr from "../../hooks/useGenerateQr";
+import useGetQr from "../../hooks/useGetQr";
+import { EyeIcon } from "lucide-react";
+import ImageModal from "../../components/qrModal";
 
 function Table() {
-  
-const {data,generateQr}=useGenerateQr()
-const [grImage,setGrimage]=useState("")
-useEffect(()=>{
-generateQr(33)
-},[])
+  const { data, generateQr } = useGenerateQr();
+  const [grImage, setGrimage] = useState("");
+  useEffect(() => {
+    generateQr(33);
+  }, []);
 
+  const [isQrcode, setQrcode] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+  const { list, loading } = useGetQr();
+  function openModal() {
+    setIsModal(true);
+  }
+  function closeModal() {
+    setIsModal(false);
+  }
+  function qropenModal(data) {
+    setGrimage(data);
 
-
-const[isQrcode,setQrcode]=useState(false)
-const[isModal,setIsModal]=useState(false)
-const{list,loading}=useGetQr() 
-function openModal(){
-    setIsModal(true)
-
-}
-function closeModal(){
-  setIsModal(false)
-}
-function qropenModal(data){
-  setGrimage(data)
-
-  setQrcode(true)
-  
-}
-function qrcloseModal(){
-  setQrcode(false)
-}
-console.log(grImage,"gopzzz")
+    setQrcode(true);
+  }
+  function qrcloseModal() {
+    setQrcode(false);
+  }
   return (
-    
     <div className="p-18 ">
-      <div className='w-full  flex justify-end mb-14'>
-        <button  onClick={openModal}
-                   className="bg-red-800 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded"
->add</button>
- 
+      <div className="w-full  flex justify-end mb-14">
+        <button
+          onClick={openModal}
+          className="bg-red-800 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded"
+        >
+          add
+        </button>
       </div>
-        
+
       <table className="min-w-full border border-gray-300 text-sm">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border px-4 py-2 text-left">Table No</th>
+            <th className="border text-white px-4 py-2 text-left bg-red-800">
+              Table No
+            </th>
 
-            <th className="border px-4 py-2 text-left">Capacity</th> 
-            <th className="border px-4 py-2 text-left">View</th>              
-             
+            <th className="border text-white px-4 py-2 text-left bg-red-800">
+              Capacity
+            </th>
+            <th className="border text-white px-4 py-2 text-left bg-red-800">
+              View
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -61,9 +61,12 @@ console.log(grImage,"gopzzz")
               <td className="border px-4 py-2">{table.tableNo}</td>
               <td className="border px-4 py-2">{table.capacity}</td>
 
-              <td onClick={()=>qropenModal(table.qrcode)}
-              className="border px-4 py-2"><EyeIcon/></td>
-
+              <td
+                onClick={() => qropenModal(table.qrcode)}
+                className="border px-4 py-2"
+              >
+                <EyeIcon />
+              </td>
             </tr>
           ))}
         </tbody>
@@ -71,26 +74,13 @@ console.log(grImage,"gopzzz")
       {/* <div className="flex flex-wrap gap-4">
         
       </div> */}
-      {isModal  &&
-      <TableModal onClose={closeModal}/>
-      }
-      {
-        isQrcode &&
-        <ImageModal imageUrl={grImage} onClose={qrcloseModal}/>
-      }
-
+      {isModal && <TableModal onClose={closeModal} />}
+      {isQrcode && <ImageModal imageUrl={grImage} onClose={qrcloseModal} />}
     </div>
-  )
+  );
 }
 
-export default Table
-
-
-
-
-
-
-
+export default Table;
 
 // import React, { useEffect, useState } from 'react';
 // import TableModal from '../../components/tableModal';
@@ -120,7 +110,6 @@ export default Table
 //       setImgSrc(base64Image);
 //     }
 //   }, [data]);
-
 
 //   function openModal() {
 //     setIsModal(true);

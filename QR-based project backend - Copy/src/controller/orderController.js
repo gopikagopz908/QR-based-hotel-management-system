@@ -1,7 +1,9 @@
 import asyncHandler from "../Middlewares/asyncHandler.js";
 import { addOrderService, verifyPaymentService } from "../Service/orderService.js";
 import { STATUS } from "../utils/constant.js";
-
+//dont worry we can check it in the payment
+//set akam already ready akeethalle vala thatalo mutalo koduthall math
+//nee ipo mainn yitullla crud motham coplete ak athavumpo kure pani kuranju okk? hh good gir;
 export const addOrder=asyncHandler(async(req,res)=>{
     // const userId=req.user._id;
     const{paymentMethod,items,total}=req.body;

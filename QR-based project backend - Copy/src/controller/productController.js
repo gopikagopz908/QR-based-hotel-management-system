@@ -1,6 +1,8 @@
 import asyncHandler from "../Middlewares/asyncHandler.js";
 import Products from "../model/productModel.js";
-import { addProductService } from "../Service/ProductService.js";
+import { addProductService, deleteProductService, editProductService } from "../Service/ProductService.js";
+import { STATUS } from "../utils/constant.js";
+import CustomError from "../utils/customError.js";
 
 // export const addProducts=asyncHandler(async(req,res)=>{
 
@@ -51,5 +53,37 @@ export const addProducts=asyncHandler(async(req,res)=>{
     res.status(200).json({
         message:"product added successfully",
         response:result
+    })
+})
+
+
+export const editProducts=asyncHandler(async(req,res)=>{
+  
+    const{_id,...updateItems}=req.body
+
+    if(!_id){
+        throw new CustomError("product is not found",)
+    }
+    const editProduct=await editProductService(_id,updateItems)
+
+    res.status(200).json({
+        status:STATUS.SUCCESS,
+        message:'product updated successfully',
+        editProduct   
+    })
+})
+
+
+export const deleteProduct=asyncHandler(async(req,res)=>{
+    const{id}=req.params
+    if(!_id){
+        throw new CustomError("product is not found",404)
+    }
+    const deleteProduct=await deleteProductService(id)
+    res.status(200).json({
+        status:STATUS.SUCCESS,
+        message:"product deleted successfully",
+        deleteProduct
+
     })
 })
