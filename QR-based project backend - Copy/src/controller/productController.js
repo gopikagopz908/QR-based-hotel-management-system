@@ -44,12 +44,14 @@ export const addProducts=asyncHandler(async(req,res)=>{
     const data=req.body;
     const file=req.file;
 
+
     if(!data||!file){
         return res.status(400).json({
             message:"Invalid data or image file missing"
         })
     }
     const result=await addProductService(data,file.path);
+    console.log(result,"resultt")
     res.status(200).json({
         message:"product added successfully",
         response:result
@@ -58,13 +60,15 @@ export const addProducts=asyncHandler(async(req,res)=>{
 
 
 export const editProducts=asyncHandler(async(req,res)=>{
-  
-    const{_id,...updateItems}=req.body
+
+    const id=req.params;
+    console.log(req.body,"gcgcgcgbodt")
+    const{updateItems}=req.body;
 
     if(!_id){
         throw new CustomError("product is not found",)
     }
-    const editProduct=await editProductService(_id,updateItems)
+    const editProduct=await editProductService(id,updateItems)
 
     res.status(200).json({
         status:STATUS.SUCCESS,
@@ -76,7 +80,7 @@ export const editProducts=asyncHandler(async(req,res)=>{
 
 export const deleteProduct=asyncHandler(async(req,res)=>{
     const{id}=req.params
-    if(!_id){
+    if(!id){
         throw new CustomError("product is not found",404)
     }
     const deleteProduct=await deleteProductService(id)

@@ -4,7 +4,7 @@ import React from 'react'
 import './App.css'
 import './index.css'
 
-import {BrowserRouter as Router,Routes,Route,Link}from 'react-router-dom'
+import {BrowserRouter as Router,Routes,Route,Link, Navigate}from 'react-router-dom'
 
 
 import Layout from './layouts/Layout'
@@ -17,18 +17,29 @@ import AdminLayout from './pages/Admin/AdminLayout'
 import DashBoard from './pages/Admin/DashBoard'
 import Foods from './pages/Foods'
 import Table from './pages/Admin/Table'
+import { useAuthContext } from './context/authContext'
+import AdminLoginPage from './pages/Admin/LoginPage'
 // import AdminOrders from './pages/Admin/Orders'
 function App() {
+  const {role}=useAuthContext();
 
   return (
     <Router>
       <Routes>
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<DashBoard/>}/>
-           <Route path="foods" element={<Foods/>}/>
-           <Route path="tables" element={<Table/>}/>
-           {/* <Route path="orders" element={<AdminOrders/>}/> */}
-        </Route>
+      <Route path='/admin/login' element={<AdminLoginPage/>} />
+{role ? (
+ <Route path="/admin" element={<AdminLayout />}>
+ <Route index element={<DashBoard/>}/>
+ <Route path="foods" element={<Foods/>}/>
+ <Route path="tables" element={<Table/>}/>
+ {/* <Route path="orders" element={<AdminOrders/>}/> */}
+</Route>
+):(
+  <Route path="/admin/*" element={<Navigate to="/" />} />
+)}
+       
+
+
         <Route element={<Layout />}>
           <Route   index  element={<Home />} />
           <Route path="/about" element={<About/>}/>

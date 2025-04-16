@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import AdminLoginModal from '../../components/loginPageModal';
+// import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// import AdminLoginModal from '../../components/loginPageModal';
+
 
 const AdminNavbar = () => {
-    const[openModal,setOpenModal]=useState(false)
+    // const[openModal,setOpenModal]=useState(false)
 
-    function openLogin(){
-        setOpenModal(true)
-    }
-    function closeLogin(){
-        setOpenModal(false)
-    }
+    // function openLogin(){
+    //     setOpenModal(true)
+    // }
+    // function closeLogin(){
+    //     setOpenModal(false)
+    // }
+
+    const navigate=useNavigate()
   return (
     <nav className="w-full px-4 py-3 bg-stone-300 shadow-md flex items-center justify-between border-b border-blue-100">
       {/* Left Side: Logo + Title */}
@@ -19,10 +23,10 @@ const AdminNavbar = () => {
       </div>
 
       {/* Right Side: Login Button */}
-      <button onClick={openLogin} className="bg-red-800 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition duration-300">
+      <button onClick={()=>navigate("/admin/login")} className="bg-red-800 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition duration-300">
         Login
       </button>
-      {openModal && <AdminLoginModal onClose={closeLogin}/>}
+      {/* {openModal && <AdminLogin onClose={closeLogin}/>} */}
     </nav>
     
   );

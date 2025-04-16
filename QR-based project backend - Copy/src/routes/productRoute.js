@@ -7,7 +7,7 @@ const productRoute=express()
  productRoute.post('/',upload.single('image') ,addProducts)
  productRoute.get('/getProduct',getAllProducts)
 
-productRoute.patch('/editProduct',upload.single('image'),editProducts)
+productRoute.patch('/editProduct/:id',upload.single('image'),editProducts)
 
 productRoute.delete('/deleteProduct/:id',deleteProduct)
 

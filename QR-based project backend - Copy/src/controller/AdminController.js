@@ -26,8 +26,13 @@ if(!email || !password){
 const data={email,role:"admin"}
 console.log(process.env.ADMIN_EMAIL,process.env.ADMIN_PASSWORD,"bdhdgeh")
 if(email===process.env.ADMIN_EMAIL&&password===process.env.ADMIN_PASSWORD){
-  const token=await generateToken(data)
-  console.log(token,'grrr')
+  const token=await generateToken(data) 
+  res.status(201).json({
+    status:true,
+    message:"Admin loged in ",
+    token
+
+  })
 
   
 }
@@ -46,6 +51,7 @@ export const generateQRCode = asyncHandler(async (req, res) => {
   const { tableNo,capacity } = req.query;
   console.log(tableNo,capacity)
   const baseUrl = "http://localhost:3000";
+  // const baseUrl="https://qr-based-hotel-management-system-nsa6-8mnvxh1l4.vercel.app/";
 
   // if (!tableNo||!capacity) {
   //   return res.status(400).json({ error: 'Please provide the "data" query parameter.' });

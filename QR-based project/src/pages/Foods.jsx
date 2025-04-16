@@ -253,41 +253,41 @@
 // };
 
 // export default Foods;
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddFoodModal from "../components/addEditModal";
+import axiosInstance from "../Api/axiosInstance";
 
 const Foods = () => {
-  const initialItems = [
-    {
-      id: 1,
-      name: "Grilled Chicken",
-      price: 250,
-      category: "Non-Veg",
-      description: "Juicy, tender grilled chicken with aromatic spices.",
-      image: "https://i.pinimg.com/736x/da/a6/32/daa632ed5f4af5cd01ef2ac136bb2ef0.jpg",
-    },
-    {
-      id: 2,
-      name: "Paneer Tikka",
-      price: 200,
-      category: "Veg",
-      description: "Marinated paneer cubes grilled to perfection.",
-      image: "https://i.pinimg.com/736x/16/05/1f/16051fea26783e6d91f02877b0cc7404.jpg",
-    },
-    {
-      id: 3,
-      name: "Chocolate Brownie",
-      price: 150,
-      category: "Desserts",
-      description: "Warm, fudgy brownie topped with melted chocolate.",
-      image: "https://i.pinimg.com/474x/4e/54/18/4e5418327e8e1bcacdeda173e0143c4b.jpg",
-    },
-  ];
+
+
 
   const [activeCategory, setActiveCategory] = useState("All");
-  const [menu, setMenu] = useState(initialItems);
+  // const[initialItems,setInitalItems]=useState([])
+  const [menu, setMenu] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+ const [id,setid]=useState("")
+
+useEffect(()=>{
+  const fetchData=async()=>{
+    try {
+      const response=await axiosInstance.get("/product/getProduct")
+      setMenu(response?.data?.products)
+              console.log(response.data,"useeeddd")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  fetchData()
+  },[])
+
+  // console.log(initialItems,"initiall")
+
+  function handleOpenmodal(id){
+    console.log(id,"hrhtr")
+    setid(id)
+    setIsModalOpen(true)
+  }
 
   const toggleSelect = (item) => {
     const isSelected = selectedItems.some((i) => i.id === item.id);
@@ -309,6 +309,9 @@ const Foods = () => {
     activeCategory === "All"
       ? menu
       : menu.filter((item) => item.category === activeCategory);
+
+
+
 
   return (
     <>
@@ -373,12 +376,13 @@ const Foods = () => {
                   <td className="p-3 font-medium">{item.name}</td>
                   <td className="p-3 font-medium">{item.category}</td>
                   <td className="p-3 text-black">{item.description}</td>
+                  <td className="p-3 text-black">{item._id}</td>
                   <td className="p-3 text-red-600 font-semibold">
                     ₹{item.price}
                   </td>
                   <td className="p-3">
                     <div className="flex space-x-2">
-                      <button className="bg-black text-white px-3 py-1 rounded text-xs">
+                      <button onClick={()=>handleOpenmodal(item._id)} className="bg-black text-white px-3 py-1 rounded text-xs">
                         Edit
                       </button>
                       <button className="bg-black text-white px-3 py-1 rounded text-xs">
@@ -397,7 +401,7 @@ const Foods = () => {
       <AddFoodModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onSave={handleAddFood}
+       ids={id}
       />
     </>
   );

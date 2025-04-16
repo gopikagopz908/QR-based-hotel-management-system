@@ -252,6 +252,7 @@ import { useNavigate } from "react-router-dom";
  import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "./Api/axiosInstance";
 import CardSkeleton from "./components/skeleton/CardSkeleton";
+import AddFoodModal from "./components/addEditModal";
 
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState("");
@@ -394,6 +395,7 @@ const Menu = () => {
   const {products=[],totalProducts=0}=data;
 
 
+
   return (
     <div className="mt-24 space-y-16 md:px-4 sm:px-8   h-full relative ">
 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl 2xl:text-9xl font-bold text-center text-gray-800 font-primary">
@@ -487,6 +489,7 @@ const Menu = () => {
           </button>
         </div>
       )}
+      {isModal &&<AddFoodModal/>}
     </div>
   );
 };

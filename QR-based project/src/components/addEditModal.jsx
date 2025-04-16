@@ -1,24 +1,68 @@
-
 import React, { useState } from 'react';
+import useAddProduct from '../hooks/useAddproducts';
+import useEditProduct from '../hooks/useEditProducts';
 
-const AddFoodModal = ({ isOpen, onClose, onSave }) => {
+const AddFoodModal = ({ isOpen, onClose,ids }) => {
+  console.log(ids,"idssssjfbsjf")
+ 
   const [formData, setFormData] = useState({
     name: '',
     price: '',
-    image: '',
+    image: null,
     description: '',
     category: '',
   });
 
+  const [preview, setPreview] = useState(null);
+ const{loading,AddProduct}=useAddProduct()
+ const {editProduct}=useEditProduct()
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData(prev => ({ ...prev, image: file }));
+
+      // Show image preview
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result);
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(formData);
-    setFormData({ name: '', price: '', image: '', description: '', category: '' });
+  const form = new FormData();
+  form.append('name', formData.name);
+  form.append('price', formData.price);
+  form.append('description', formData.description);
+  form.append('category', formData.category);
+  form.append('image', formData.image); 
+
+  if(!ids){
+    AddProduct(form)
+  }else{
+    const updatedData={ids,form}
+    
+editProduct(updatedData)
+  }
+
+    
+    // You can optionally handle image upload here (e.g., to Cloudinary)
+    console.log(formData,"gffgnfgn")
+  
+
+    setFormData({
+      name: '',
+      price: '',
+      image: null,
+      description: '',
+      category: '',
+    });
+    setPreview(null);
     onClose();
   };
 
@@ -47,14 +91,24 @@ const AddFoodModal = ({ isOpen, onClose, onSave }) => {
             className="w-full border border-red-500 rounded-lg p-2"
             required
           />
-          <input
-            type="text"
-            name="image"
-            placeholder="Image URL"
-            value={formData.image}
-            onChange={handleChange}
-            className="w-full border border-red-500 rounded-lg p-2"
-          />
+
+          <div>
+            <label className="block mb-1 text-gray-700">Upload Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full border border-red-500 rounded-lg p-2"
+            />
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="mt-2 w-full h-40 object-cover rounded"
+              />
+            )}
+          </div>
+
           <textarea
             name="description"
             placeholder="Description"
@@ -62,6 +116,7 @@ const AddFoodModal = ({ isOpen, onClose, onSave }) => {
             onChange={handleChange}
             className="w-full border border-red-500 rounded-lg p-2"
           />
+
           <div className="relative">
             <select
               name="category"
@@ -72,11 +127,10 @@ const AddFoodModal = ({ isOpen, onClose, onSave }) => {
             >
               <option value="">Select Category</option>
               <option value="Veg">Veg</option>
-              <option value="Non-Veg">Non-Veg</option>
+              <option value="nonVeg">nonVeg</option>
               <option value="Drinks">Drinks</option>
               <option value="Desserts">Desserts</option>
             </select>
-            {/* Down arrow icon (optional) */}
             <div className="pointer-events-none absolute right-3 top-3 text-gray-500">
               ▼
             </div>

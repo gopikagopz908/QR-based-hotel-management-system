@@ -4,7 +4,8 @@ import CustomError from "../utils/customError.js";
 
 export const addProductService=async(data,imagePath)=>{
     const{name,category,description,price}=data
-
+console.log(name,category,"cTEgoryyy")
+console.log(imagePath,"imagePath")
     const newProduct=new Products(
         {
             name,
@@ -15,7 +16,7 @@ export const addProductService=async(data,imagePath)=>{
         }
     ) 
      const savedProduct=await newProduct.save()
-
+console.log(savedProduct,"saved products")
      return savedProduct;
 }
 
