@@ -5,7 +5,16 @@ import useSingleproduct from '../hooks/useSingleproduct';
 
 const AddFoodModal = ({ isOpen, onClose,ids }) => {
   console.log(ids,"idssssjfbsjf")
- 
+  const{singleProduct,GetSingle}=useSingleproduct()
+  useEffect(() => {
+
+    if(ids){
+      console.log("object")
+      GetSingle(ids);
+    }
+  
+  }, [ids]);
+
   const [formData, setFormData] = useState({
     name: '',
     price: '',
@@ -14,15 +23,47 @@ const AddFoodModal = ({ isOpen, onClose,ids }) => {
     category: '',
   });
 
+
+useEffect(()=>{
+setFormData({
+  name:singleProduct?.name,
+  price:singleProduct?.price,
+  image:singleProduct?.image,
+  description:singleProduct?.description,
+  category:singleProduct?.category,
+})
+},[ids])
+useEffect(() => {
+  if (singleProduct) {
+    setFormData({
+      name: singleProduct.name || '',
+      price: singleProduct.price || '',
+      image: singleProduct.image || null,
+      description: singleProduct.description || '',
+      category: singleProduct.category || '',
+    });
+
+    // Optional: set preview if editing
+    if (singleProduct.image) {
+      setPreview(singleProduct.image);
+    }
+  }
+}, [singleProduct]);
+
+
+
   const [preview, setPreview] = useState(null);
  const{loading,AddProduct}=useAddProduct()
 
  const {editProduct}=useEditProduct()
- const{singleProduct}=useSingleproduct()
+ 
 
- useEffect(()=>{
-  console.log(singleProduct,"edittgfgghghcghgvhgfhgvh")
-  })
+
+ 
+
+console.log(singleProduct,"singleee")
+
+
  
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -102,7 +143,7 @@ editProduct(ids,form)
             required
           />
 
-          <div>
+           <div> 
             <label className="block mb-1 text-gray-700">Upload Image</label>
             <input
               type="file"
@@ -116,7 +157,7 @@ editProduct(ids,form)
                 alt="Preview"
                 className="mt-2 w-full h-40 object-cover rounded"
               />
-            )}
+            )} 
           </div>
 
           <textarea
@@ -126,7 +167,7 @@ editProduct(ids,form)
             onChange={handleChange}
             className="w-full border border-red-500 rounded-lg p-2"
           />
-
+{/* 
           <div className="relative">
             <select
               name="category"
@@ -144,7 +185,30 @@ editProduct(ids,form)
             <div className="pointer-events-none absolute right-3 top-3 text-gray-500">
               ▼
             </div>
-          </div>
+          </div> */}
+
+
+<div className="relative pointer-events-none">
+  <select
+    name="category"
+    value={formData.category}
+    onChange={handleChange}
+    className="w-full border border-red-500 rounded-lg p-2 bg-white appearance-none pointer-events-auto"
+    required
+  >
+    <option value="">Select Category</option>
+    <option value="Veg">Veg</option>
+    <option value="nonVeg">nonVeg</option>
+    <option value="Drinks">Drinks</option>
+    <option value="Desserts">Desserts</option>
+  </select>
+  <div className="absolute right-3 top-3 text-gray-500">
+    ▼
+  </div>
+</div>
+
+
+
 
           <div className="flex justify-end gap-2">
             <button

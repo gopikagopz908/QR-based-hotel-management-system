@@ -4,10 +4,10 @@ import axiosInstance from '../Api/axiosInstance'
 function useDeleteProduct() {
   const[loading,setLoading]=useState(false)
   const[deleteProduct,SetdeleteProduct]=useState([])
-  const DeleteProduct=async(data)=>{
+  const DeleteProduct=async(id)=>{
          setLoading(true)
       try {
-        const response=await axiosInstance.post('/product/deleteProduct/:id',data)
+        const response=await axiosInstance.delete(`/product/deleteProduct/${id}`)
         console.log(response,"enfjrnrj")
       } catch (error) {
         console.log(error)

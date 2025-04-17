@@ -51,13 +51,16 @@ export const generateQRCode = asyncHandler(async (req, res) => {
   const { tableNo,capacity } = req.query;
   console.log(tableNo,capacity)
   // const baseUrl = "http://localhost:3000";
-  const baseUrl="https://qr-based-hotel-management-system-nsa6-8mnvxh1l4.vercel.app";
+  const baseUrl="https://qr-based-hotel-management-system-nsa6-8mnvxh1l4.vercel.app/";
+  // const baseUrl="https://www.flipkart.com/"
 
   // if (!tableNo||!capacity) {
   //   return res.status(400).json({ error: 'Please provide the "data" query parameter.' });
   // }
 
-  const qrContent = `${baseUrl}/display?data=${encodeURIComponent(tableNo)}`;
+  const qrContent = `${baseUrl}?data=${encodeURIComponent(tableNo)}`;
+
+  console.log(qrContent,"Table")
 
     const qrImageBuffer = await QRCode.toBuffer(qrContent);
 

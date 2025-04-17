@@ -256,6 +256,7 @@
 import React, { useEffect, useState } from "react";
 import AddFoodModal from "../components/addEditModal";
 import axiosInstance from "../Api/axiosInstance";
+import useDeleteProduct from "../hooks/useDeleteproduct";
 
 const Foods = () => {
 
@@ -267,7 +268,7 @@ const Foods = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
  const [id,setid]=useState("")
-
+const{DeleteProduct}=useDeleteProduct()
 useEffect(()=>{
   const fetchData=async()=>{
     try {
@@ -389,7 +390,7 @@ const handleClose=()=>{
                       <button onClick={()=>handleOpenmodal(item._id)} className="bg-black text-white px-3 py-1 rounded text-xs">
                         Edit
                       </button>
-                      <button className="bg-black text-white px-3 py-1 rounded text-xs">
+                      <button onClick={()=>DeleteProduct(item._id)} className="bg-black text-white px-3 py-1 rounded text-xs">
                         Delete
                       </button>
                     </div>
