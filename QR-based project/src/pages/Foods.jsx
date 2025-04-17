@@ -289,6 +289,7 @@ useEffect(()=>{
     setIsModalOpen(true)
   }
 
+
   const toggleSelect = (item) => {
     const isSelected = selectedItems.some((i) => i.id === item.id);
     if (isSelected) {
@@ -310,8 +311,11 @@ useEffect(()=>{
       ? menu
       : menu.filter((item) => item.category === activeCategory);
 
-
-
+const handleClose=()=>{
+  setIsModalOpen(false);
+  setid("")
+}
+ 
 
   return (
     <>
@@ -376,7 +380,7 @@ useEffect(()=>{
                   <td className="p-3 font-medium">{item.name}</td>
                   <td className="p-3 font-medium">{item.category}</td>
                   <td className="p-3 text-black">{item.description}</td>
-                  <td className="p-3 text-black">{item._id}</td>
+                  {/* <td className="p-3 text-black">{item._id}</td> */}
                   <td className="p-3 text-red-600 font-semibold">
                     ₹{item.price}
                   </td>
@@ -400,7 +404,7 @@ useEffect(()=>{
       {/* Add Item Modal */}
       <AddFoodModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() =>handleClose()}
        ids={id}
       />
     </>

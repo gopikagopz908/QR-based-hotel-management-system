@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAddProduct from '../hooks/useAddproducts';
 import useEditProduct from '../hooks/useEditProducts';
+import useSingleproduct from '../hooks/useSingleproduct';
 
 const AddFoodModal = ({ isOpen, onClose,ids }) => {
   console.log(ids,"idssssjfbsjf")
@@ -15,7 +16,14 @@ const AddFoodModal = ({ isOpen, onClose,ids }) => {
 
   const [preview, setPreview] = useState(null);
  const{loading,AddProduct}=useAddProduct()
+
  const {editProduct}=useEditProduct()
+ const{singleProduct}=useSingleproduct()
+
+ useEffect(()=>{
+  console.log(singleProduct,"edittgfgghghcghgvhgfhgvh")
+  })
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -41,18 +49,20 @@ const AddFoodModal = ({ isOpen, onClose,ids }) => {
   form.append('description', formData.description);
   form.append('category', formData.category);
   form.append('image', formData.image); 
-
+console.log(form,"formmm")
   if(!ids){
+    console.log(formData,"gffgnfgn")
     AddProduct(form)
   }else{
-    const updatedData={ids,form}
+
+   
     
-editProduct(updatedData)
+editProduct(ids,form)
   }
 
     
     // You can optionally handle image upload here (e.g., to Cloudinary)
-    console.log(formData,"gffgnfgn")
+  
   
 
     setFormData({

@@ -489,7 +489,7 @@ const Menu = () => {
           </button>
         </div>
       )}
-      {isModal &&<AddFoodModal/>}
+     
     </div>
   );
 };

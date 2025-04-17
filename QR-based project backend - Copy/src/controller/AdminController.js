@@ -50,8 +50,8 @@ if(email===process.env.ADMIN_EMAIL&&password===process.env.ADMIN_PASSWORD){
 export const generateQRCode = asyncHandler(async (req, res) => {
   const { tableNo,capacity } = req.query;
   console.log(tableNo,capacity)
-  const baseUrl = "http://localhost:3000";
-  // const baseUrl="https://qr-based-hotel-management-system-nsa6-8mnvxh1l4.vercel.app/";
+  // const baseUrl = "http://localhost:3000";
+  const baseUrl="https://qr-based-hotel-management-system-nsa6-8mnvxh1l4.vercel.app";
 
   // if (!tableNo||!capacity) {
   //   return res.status(400).json({ error: 'Please provide the "data" query parameter.' });
@@ -80,14 +80,14 @@ export const getQrCode=asyncHandler(async(req,res)=>{
 
  export const getAllProducts=asyncHandler(async(req,res)=>{
  
-  const {category,page=1,limit=10,search}=req.query;
+  const {category,search}=req.query;
   //properties are extracted from req.query and assigned to variable
   
 
   const{products,totalProducts}=await getAllProductService({
       category, 
-      page:parseInt(page,10),
-      limit:parseInt(limit,10),
+      // page:parseInt(page,10),
+      // limit:parseInt(limit,10),
       search,
   })
   if(products.length===0){

@@ -1,6 +1,6 @@
 import asyncHandler from "../Middlewares/asyncHandler.js";
 import Products from "../model/productModel.js";
-import { addProductService, deleteProductService, editProductService } from "../Service/ProductService.js";
+import { addProductService, deleteProductService, editProductService, getProductByIdService } from "../Service/ProductService.js";
 import { STATUS } from "../utils/constant.js";
 import CustomError from "../utils/customError.js";
 
@@ -43,7 +43,7 @@ import CustomError from "../utils/customError.js";
 export const addProducts=asyncHandler(async(req,res)=>{
     const data=req.body;
     const file=req.file;
-
+console.log(data,"dataa")
 
     if(!data||!file){
         return res.status(400).json({
@@ -59,23 +59,43 @@ export const addProducts=asyncHandler(async(req,res)=>{
 })
 
 
-export const editProducts=asyncHandler(async(req,res)=>{
+// export const editProducts=asyncHandler(async(req,res)=>{
 
-    const id=req.params;
-    console.log(req.body,"gcgcgcgbodt")
-    const{updateItems}=req.body;
+//     const id=req.params;
+//     console.log(req.body,"gcgcgcgbodt")
+//     const{updateItems}=req.body;
 
-    if(!_id){
-        throw new CustomError("product is not found",)
+//     if(!_id){
+//         throw new CustomError("product is not found",)
+//     }
+//     const editProduct=await editProductService(id,updateItems)
+
+//     res.status(200).json({
+//         status:STATUS.SUCCESS,
+//         message:'product updated successfully',
+//         editProduct   
+//     })
+// })
+export const editProducts = asyncHandler(async (req, res) => {
+    const data = req.body;
+    const file = req.file;
+    const { id } = req.params;
+console.log(data,"datt","idd",id)
+    if (!id || !data) {
+        return res.status(400).json({
+            message: "Product ID or data missing"
+        });
     }
-    const editProduct=await editProductService(id,updateItems)
+
+    const imagePath = file ? file.path : null;
+
+    const result = await editProductService(id, data, imagePath);
 
     res.status(200).json({
-        status:STATUS.SUCCESS,
-        message:'product updated successfully',
-        editProduct   
-    })
-})
+        message: "Product updated successfully",
+        response: result
+    });
+});
 
 
 export const deleteProduct=asyncHandler(async(req,res)=>{
@@ -89,5 +109,19 @@ export const deleteProduct=asyncHandler(async(req,res)=>{
         message:"product deleted successfully",
         deleteProduct
 
+    })
+})
+
+export const singleProduct=asyncHandler(async(req,res)=>{
+    const{id}=req.params;
+
+    const productOne=await getProductByIdService(id)
+
+    if(!productOne){
+        throw new CustomError("Product not found",404)
+    }
+    res.status(200).json({
+        status:STATUS.SUCCESS,
+        productOne
     })
 })

@@ -1,10 +1,14 @@
 import { LayoutDashboard, LogOut, ShoppingCart, Table, Users, UtensilsCrossed } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
 const Sidebar = () => {
     const location = useLocation();
-    
+    const navigate=useNavigate()
+    const logout=()=>{
+      localStorage.removeItem("role")
+      navigate('/')
+    }
     const menuItems = [
       { 
         path: "/admin", 
@@ -67,7 +71,9 @@ const Sidebar = () => {
         {/* Logout */}
         <div className="p-4 border-t border-blue-100">
           <button className="flex items-center gap-3 px-2 py-6 text-black transition-colors w-full">
-            <LogOut className="lg:w-8 lg:h-8"  />
+            <LogOut
+            onClick={logout} 
+            className="lg:w-8 lg:h-8"  />
             <span>Logout</span>
           </button>
         </div>

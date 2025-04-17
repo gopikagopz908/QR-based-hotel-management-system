@@ -1,11 +1,12 @@
+import asyncHandler from "../Middlewares/asyncHandler.js";
 import Products from "../model/productModel.js";
+import { STATUS } from "../utils/constant.js";
 import CustomError from "../utils/customError.js";
 
 
 export const addProductService=async(data,imagePath)=>{
     const{name,category,description,price}=data
-console.log(name,category,"cTEgoryyy")
-console.log(imagePath,"imagePath")
+
     const newProduct=new Products(
         {
             name,
@@ -42,4 +43,13 @@ export const deleteProductService=async(id)=>{
         {isDelete:true},
         {new:true}
     )
+}
+
+
+export const getProductByIdService=async(id)=>{
+   const productDetails=await Products.findById(id)
+   if(!productDetails){
+    throw new CustomError("product not found",404)
+   } 
+   return productDetails;
 }
