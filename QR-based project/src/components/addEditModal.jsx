@@ -4,7 +4,6 @@ import useEditProduct from '../hooks/useEditProducts';
 import useSingleproduct from '../hooks/useSingleproduct';
 
 const AddFoodModal = ({ isOpen, onClose,ids }) => {
-  console.log(ids,"idssssjfbsjf")
   const{singleProduct,GetSingle}=useSingleproduct()
   useEffect(() => {
 

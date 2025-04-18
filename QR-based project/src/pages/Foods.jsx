@@ -257,35 +257,41 @@ import React, { useEffect, useState } from "react";
 import AddFoodModal from "../components/addEditModal";
 import axiosInstance from "../Api/axiosInstance";
 import useDeleteProduct from "../hooks/useDeleteproduct";
+ import Swal from 'sweetalert2';
+
 
 const Foods = () => {
 
 
 
   const [activeCategory, setActiveCategory] = useState("All");
-  // const[initialItems,setInitalItems]=useState([])
   const [menu, setMenu] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
  const [id,setid]=useState("")
+
+ const[isRender,setRender]=useState(false)
+
+ const handleRender=()=>{
+  setRender(!isRender)
+ }
+
 const{DeleteProduct}=useDeleteProduct()
 useEffect(()=>{
   const fetchData=async()=>{
     try {
       const response=await axiosInstance.get("/product/getProduct")
       setMenu(response?.data?.products)
-              console.log(response.data,"useeeddd")
     } catch (error) {
       console.log(error)
     }
   }
   fetchData()
-  },[])
+  },[isRender])
 
   // console.log(initialItems,"initiall")
 
   function handleOpenmodal(id){
-    console.log(id,"hrhtr")
     setid(id)
     setIsModalOpen(true)
   }
@@ -306,7 +312,7 @@ useEffect(()=>{
     setMenu([...menu, itemWithId]);
   };
 
-  const categories = ["All", "Veg", "Non-Veg", "Drinks", "Desserts"];
+  const categories = ["All", "Veg", "nonVeg", "Drinks", "Desserts"];
   const filteredItems =
     activeCategory === "All"
       ? menu
@@ -390,9 +396,32 @@ const handleClose=()=>{
                       <button onClick={()=>handleOpenmodal(item._id)} className="bg-black text-white px-3 py-1 rounded text-xs">
                         Edit
                       </button>
-                      <button onClick={()=>DeleteProduct(item._id)} className="bg-black text-white px-3 py-1 rounded text-xs">
+                      {/* <button onClick={()=>DeleteProduct(item._id)} className="bg-black text-white px-3 py-1 rounded text-xs">
                         Delete
-                      </button>
+                      </button> */}
+                      <button
+  onClick={() => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to delete this item?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        DeleteProduct(item._id);
+        Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
+      }
+    });
+  }}
+  className="bg-black text-white px-3 py-1 rounded text-xs"
+>
+  Delete
+</button>
+
+
                     </div>
                   </td>
                 </tr>
@@ -405,9 +434,12 @@ const handleClose=()=>{
       {/* Add Item Modal */}
       <AddFoodModal
         isOpen={isModalOpen}
-        onClose={() =>handleClose()}
+        onClose={() =>handleClose(handleRender())}
+        
        ids={id}
+       
       />
+     
     </>
   );
 };

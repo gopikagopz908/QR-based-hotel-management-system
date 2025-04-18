@@ -4,14 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const AdminNavbar = () => {
-    // const[openModal,setOpenModal]=useState(false)
-
-    // function openLogin(){
-    //     setOpenModal(true)
-    // }
-    // function closeLogin(){
-    //     setOpenModal(false)
-    // }
+    
 
     const navigate=useNavigate()
   return (
@@ -23,10 +16,12 @@ const AdminNavbar = () => {
       </div>
 
       {/* Right Side: Login Button */}
-      <button onClick={()=>navigate("/admin/login")} className="bg-red-800 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition duration-300">
+       <button onClick={()=>navigate("/admin/login")} className="bg-red-800 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-full transition duration-300">
         Login
-      </button>
+      </button> 
+       
       {/* {openModal && <AdminLogin onClose={closeLogin}/>} */}
+      
     </nav>
     
   );

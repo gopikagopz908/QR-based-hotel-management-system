@@ -7,7 +7,7 @@ const Sidebar = () => {
     const navigate=useNavigate()
     const logout=()=>{
       localStorage.removeItem("role")
-      navigate('/')
+      navigate('/admin/login')
     }
     const menuItems = [
       { 
@@ -26,7 +26,7 @@ const Sidebar = () => {
         icon: <Table className="w-5 h-5" /> 
       },
       { 
-        path: "/staffs", 
+        path: "staffs", 
         name: "Staffs", 
         icon: <Users className="w-5 h-5" /> 
       },

@@ -19,6 +19,7 @@ import Foods from './pages/Foods'
 import Table from './pages/Admin/Table'
 import { useAuthContext } from './context/authContext'
 import AdminLoginPage from './pages/Admin/LoginPage'
+import StaffTable from './pages/Staff'
 // import AdminOrders from './pages/Admin/Orders'
 function App() {
   const {role}=useAuthContext();
@@ -32,6 +33,7 @@ function App() {
  <Route index element={<DashBoard/>}/>
  <Route path="foods" element={<Foods/>}/>
  <Route path="tables" element={<Table/>}/>
+ <Route path="staffs"  element={<StaffTable/>}/>
  {/* <Route path="orders" element={<AdminOrders/>}/> */}
 </Route>
 ):(
@@ -45,6 +47,7 @@ function App() {
           <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/menu" element={<Menu/>}/>
+
         </Route>
         <Route path="/orders" element={<Orders/>}/>
 

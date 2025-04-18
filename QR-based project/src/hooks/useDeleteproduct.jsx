@@ -3,7 +3,7 @@ import axiosInstance from '../Api/axiosInstance'
 
 function useDeleteProduct() {
   const[loading,setLoading]=useState(false)
-  const[deleteProduct,SetdeleteProduct]=useState([])
+  // const[deleteProduct,SetdeleteProduct]=useState([])
   const DeleteProduct=async(id)=>{
          setLoading(true)
       try {
