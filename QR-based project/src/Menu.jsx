@@ -154,11 +154,11 @@ const Menu = () => {
 
 
   return (
-    <div className="md:mt-35 space-y-16 md:px-4 sm:px-8   h-full relative ">
-<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl  font-bold text-center text-gray-800 font-primary">
+    <div className="md:mt-20 space-y-10 md:px-4 sm:px-8   h-full relative ">
+<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl  font-bold text-center text-gray-800 font-primary ">
 🍽️ Our Menu
       </h1>
-      <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-gray-700 leading-relaxed tracking-wide font-light text-center font-poppins max-w-6xl mx-auto">
+      <p className="text-base sm:text-lg md:text-2xl lg:text-xl text-gray-700  tracking-wide font-light text-center font-poppins max-w-6xl mx-auto  ">
         "We take every detail into account, bringing you the finest ingredients and flavors to craft an unforgettable dining experience".
       </p>
  
@@ -168,7 +168,7 @@ const Menu = () => {
           <button
             key={category.value}
             onClick={() => setActiveCategory(category.value)}
-            className={`md:min-w-[150px] min-w-[150px] px-2 py-2 md:py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base lg:text-2xl ${
+            className={`md:min-w-[100px] min-w-[100px] px-2 py-2 md:py-2 sm:py-4 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base lg:text-base ${
               activeCategory === category.value
                 ? "bg-red-800 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -179,8 +179,8 @@ const Menu = () => {
         ))}
       </div>
 
-<div className="w-full h-full flex  md:justify-center items-center bg-red-500  ">
-<div className=" w-full md:max-w-4/5    grid gap-y-24 sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-4   justify-items-center mt-48 ">
+<div className="w-full h-full flex  md:justify-center items-center lg:px-   ">
+<div className=" w-full   bg-red-500  grid gap-y-4 sm:grid-cols-1  md:grid-cols-1 lg:grid-cols-4   justify-items-center mt-48 ">
       {isLoading?<CardSkeleton/> :isError || products.length===0?<h1>No data found</h1>
       
       :products?.map((item) => { 
