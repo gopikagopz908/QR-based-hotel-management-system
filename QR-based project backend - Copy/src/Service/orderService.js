@@ -11,8 +11,9 @@ export const addOrderService = async (paymentMethod, items, total) => {
     paymentMethod,
     total,
   });
+  
   for (let item of items) {
-    const product = await Products.findById(item.id);
+    const product = await Products.findById(item.productId);
     if (!product) {
       throw new CustomError(`Insufficient quantity for product: ${product}`);
     }
@@ -43,13 +44,15 @@ export const addOrderService = async (paymentMethod, items, total) => {
 };
 
 export const verifyPaymentService = async (paymentId, razorpayOrderId) => {
-    console.log(paymentId,razorpayOrderId)
+    
 
   const order = await Order.findOne({ razorpayOrderId });
+  
   if (!order || order.razorpayOrderId != razorpayOrderId) {
     throw new CustomError("order is not found", 404);
   }
   try {
+    
     const paymentDetails = await razorpayInstance.payments.fetch(paymentId);
     if (paymentDetails.status === "captured") {
       order.razorpayPaymentStatus = "paid";

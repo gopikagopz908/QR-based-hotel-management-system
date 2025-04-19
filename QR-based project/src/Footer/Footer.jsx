@@ -57,7 +57,7 @@ const Footer = ({ className }) => {
               <div className="w-8 h-8 border-2 border-white rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 border-t-2 border-r-2 border-white transform rotate-45" />
               </div>
-              <h2 className="text-4xl  lg:text-8xl font-serif italic">flavor Bliss</h2>
+              <h2 className="text-4xl  lg:text-6xl font-serif italic">flavor Bliss</h2>
             </div>
             <p className="text-sm lg:text-4xl text-gray-400 leading-relaxed">
             In the new era of technology we look a in the future with certainty and pride to for our company and.

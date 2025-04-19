@@ -21,9 +21,10 @@ export const addOrder=asyncHandler(async(req,res)=>{
 })
 export const verifyPayment = asyncHandler(async (req, res) => {
     const { paymentId, orderId } = req.body;
+    
     try {
       const isPaymentVerified = await verifyPaymentService(paymentId, orderId);
-  
+
       if (isPaymentVerified) {
         res.status(200).json({
           message: "Payment verified successfully",
