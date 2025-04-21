@@ -80,7 +80,6 @@ export const editProducts = asyncHandler(async (req, res) => {
     const data = req.body;
     const file = req.file;
     const { id } = req.params;
-console.log(data,"datt","idd",id)
     if (!id || !data) {
         return res.status(400).json({
             message: "Product ID or data missing"

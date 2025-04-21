@@ -1,4 +1,5 @@
 import { LayoutDashboard, LogOut, ShoppingCart, Table, Users, UtensilsCrossed } from "lucide-react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
@@ -40,16 +41,18 @@ const Sidebar = () => {
     const isActive = (path) => {
       return location.pathname === path;
     };
+    const [activeItem, setActiveItem] = useState(null);
+
   
     return (
-      <div className="w-60 bg-stone-300 text-gray-800 min-h-full flex flex-col shadow-md">
+      <div className="w-55 bg-stone-300 text-gray-800 min-h-full flex flex-col shadow-md">
         {/* Logo */}
         
 
         
         {/* Navigation */}
         <nav className="flex-1 py-6 ">
-          <ul className="space-y-2">
+          {/* <ul className="space-y-2">
             {menuItems.map((item) => (
               <li key={item.path}>
                 <Link
@@ -65,11 +68,36 @@ const Sidebar = () => {
                 </Link>
               </li>
             ))}
-          </ul>
+          </ul> */}
+         <ul>
+  {menuItems.map((item) => (
+    <li
+      key={item.path}
+      className={`rounded-md transition-all ${
+        activeItem === item.path ? "bg-stone-500" : ""
+      }`}
+    >
+      <Link
+        to={item.path}
+        onClick={() => setActiveItem(item.path)} // ✅ Set active on click
+        className={`flex items-center lg:text-1xl gap-3 px-6 py-3 transition-colors ${
+          activeItem === item.path
+            ? "text-red-500 font-medium"
+            : "text-black"
+        }`}
+      >
+        {item.icon}
+        <span>{item.name}</span>
+      </Link>
+    </li>
+  ))}
+</ul>
+
+
         </nav>
         
         {/* Logout */}
-        <div className="p-4 border-t border-blue-100">
+        <div className="p-4 border-t border-blue-100 ">
           <button className="flex items-center gap-3 px-2 py-6 text-black transition-colors w-full">
             <LogOut
             onClick={logout} 

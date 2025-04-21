@@ -1,5 +1,7 @@
 import QRCode from 'qrcode';
 import Products from '../model/productModel.js';
+import Staffs from '../model/StaffModel.js';
+import CustomError from '../utils/customError.js';
 
 // export const generateQRCodeService = async (url, data) => {
 //   if (!url || !data) {
@@ -45,3 +47,64 @@ export const getAllProductService = async ({
 };
 
 
+
+// export const AdddStaffService=async(data,imagePath)=>{
+//   const{name,email,password,role,phoneNo}=data
+
+//   const newStaff=new Staffs({
+//      name,
+//      password,
+//      email,
+//      phoneNo,
+//      role,
+//      image:imagePath
+
+//   })
+//   const savedStaff=await newStaff.save()
+//   return savedStaff
+// }
+
+
+
+export const AdddStaffService=async(data,filepath)=>{
+      
+  const{name,password,email,phoneNo,role}=data
+
+  const newStaff=new Staffs({
+    name,
+    email,
+    password,
+    image:filepath,
+    role
+  })
+   const savedStaff=newStaff.save()
+   return savedStaff
+}
+
+
+export const StaffEditService=async(_id,...editItems)=>{
+
+   const existing=await Staffs.findById(id)
+
+   if(!existing){
+    throw new CustomError("staff is unavailable",400)
+   }
+
+  const edit=await Staffs.findByIdAndUpdate({_id},{$set:{...editItems}},{new:true})
+  return edit
+}
+
+export const deleteStaffService=async(id)=>{
+
+  const existingstaff=await Staffs.findById(id)
+
+  if(!existingstaff){
+    throw new CustomError("staff not found",404)
+  }
+  const response=await Staffs.findByIdAndUpdate(
+    id,
+    {isDelete:true},
+    {new:true}
+
+  )
+}

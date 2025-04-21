@@ -49,7 +49,7 @@ const StaffTable = () => {
         setModal(false)
       }
   return (
-    <div className="overflow-x-auto mt-10 px-4 ">
+    <div className="overflow-x-auto mt-2 px-4 ">
         <div className="flex justify-end p-4">
         <button onClick={openModal}
           
@@ -68,7 +68,9 @@ const StaffTable = () => {
             <th className="p-3 text-left">Role</th>
 
             <th className="p-3 text-left">Phone No</th> 
-            <th className="p-3 text-left">Actions</th>                                                                                      
+            <th className="p-3 text-left">Actions</th> 
+            <th className="p-3 text-left"></th>                                                                                      
+                                                                                     
                                                                                      
           </tr>
         </thead>
@@ -88,6 +90,13 @@ const StaffTable = () => {
                     <td className="flex space-x-2">
                       <button  className="bg-black text-white px-3 py-1 rounded text-xs">
                         Delete
+                      </button>
+                    </td>
+                    </td>
+                    <td className="p-3">
+                    <td className="flex space-x-2">
+                      <button  className="bg-black text-white px-3 py-1 rounded text-xs">
+                        Edit
                       </button>
                     </td>
                     </td>

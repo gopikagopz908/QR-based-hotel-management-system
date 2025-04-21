@@ -57,9 +57,9 @@ const Footer = ({ className }) => {
               <div className="w-8 h-8 border-2 border-white rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 border-t-2 border-r-2 border-white transform rotate-45" />
               </div>
-              <h2 className="text-4xl  lg:text-6xl font-serif italic">flavor Bliss</h2>
+              <h2 className="text-4xl  lg:text-4xl   font-serif italic">flavorBliss</h2>
             </div>
-            <p className="text-sm lg:text-4xl text-gray-400 leading-relaxed">
+            <p className="text-sm lg:text-xl text-gray-400 leading-relaxed">
             In the new era of technology we look a in the future with certainty and pride to for our company and.
             </p>
             <div className="flex space-x-3 ">
@@ -68,9 +68,9 @@ const Footer = ({ className }) => {
                   key={index}
                   href={link.href}
                   aria-label={link.ariaLabel}
-                  className="bg-red-600 p-4 rounded-full hover:bg-red-700 transition-colors "
+                  className="bg-red-600 p-2 rounded-full hover:bg-red-700 transition-colors "
                 >
-                  {React.createElement(link.icon, { className: "lg:h-10 lg:w-10 text-white" })}
+                  {React.createElement(link.icon, { className: "lg:h-3 lg:w-3 text-white" })}
                 </a>
               ))}
             </div>
@@ -78,14 +78,14 @@ const Footer = ({ className }) => {
 
           {/* Pages */}
           <div className="space-y-12">
-            <h3 className="text-4xl  lg:text-6xl font-medium">Pages</h3>
+            <h3 className="text-4xl  lg:text-2xl  font-medium">Pages</h3>
             <nav>
               <ul className="space-y-12">
                 {mainLinks.map((link, index) => (
                   <li key={index}>
                     <Link
                       to={link.href}
-                      className="text-gray-400 hover:text-white transition-colors lg:text-5xl "
+                      className="text-gray-400 hover:text-white transition-colors lg:text-xl "
                     >
                       {link.name}
                     </Link>
@@ -97,14 +97,14 @@ const Footer = ({ className }) => {
 
           {/* Utility Pages */}
           <div className="space-y-12">
-            <h3 className="text-4xl  lg:text-6xl font-medium">Utility Pages</h3>
+            <h3 className="text-4xl  lg:text-2xl font-medium">Utility Pages</h3>
             <nav>
               <ul className="space-y-12">
                 {utilityLinks.map((link, index) => (
                   <li key={index}>
                     <Link
                       to={link.href}
-                      className="text-gray-400 hover:text-white transition-colors lg:text-5xl"
+                      className="text-gray-400 hover:text-white transition-colors lg:text-xl"
                     >
                       {link.name}
                     </Link>
@@ -116,7 +116,7 @@ const Footer = ({ className }) => {
 
           {/* Instagram Section */}
           <div className="space-y-12 ">
-            <h3 className="text-4xl lg:text-6xl font-medium ">Follow Us On Instagram</h3>
+            <h3 className="text-4xl lg:text-2xl font-medium ">Follow Us On Instagram</h3>
             <div className="grid grid-cols-2 gap-2">
               {instagramImages.map((image, index) => (
                 <a 

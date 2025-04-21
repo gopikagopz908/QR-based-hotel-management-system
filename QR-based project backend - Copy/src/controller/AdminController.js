@@ -4,7 +4,9 @@ import { STATUS } from "../utils/constant.js";
 import Admin from "../model/adminModel.js";
 import { generateToken } from "../utils/generateToken.js";
 import Qrcode from "../model/qrcodeModel.js";
-import { getAllProductService } from "../Service/AdminService.js";
+import { AdddStaffService, deleteStaffService, getAllProductService, StaffEditService } from "../Service/AdminService.js";
+import CustomError from "../utils/customError.js";
+import e from "express";
 // export const generateQRCode = asyncHandler(async (req, res) => {
 //     const url = req.query.url || "https://your-restaurant.com/table/12";
 //     const data = req.query.data || JSON.stringify({ table: "12", restaurant: "FitnessFoodie" });
@@ -106,3 +108,91 @@ export const getQrCode=asyncHandler(async(req,res)=>{
       })
   }
 });
+
+
+
+
+// export const AddStaffs=asyncHandler(async(req,res)=>{
+
+//   const data=req.body;
+//   console.log(data,"bhhjb")
+
+
+//   const file=req.file;
+
+//   if(!data||!file){
+//     return res.status(200).json({
+//       message:"ivalid data"
+//     })
+//   }
+
+//   const result=await AdddStaffService(data,file.path)
+//   res.status(200).json({
+//     message:"staff added successfully",
+//     response:result
+
+//   })
+
+  
+
+ 
+
+// })
+
+
+export const AddStaffs=asyncHandler(async(req,res)=>{
+  const data=req.body;
+
+  const file=req.file;
+
+  if(!data||!file){
+    res.status(200).json({
+      message:"invalid data"
+    })
+  }
+
+  const result=await AdddStaffService(data,file.path)
+
+  res.status(200).json({
+    message:"staff added successfully",
+    response:result
+
+  })
+
+})
+
+
+
+export const editStaff=asyncHandler(async(req,res)=>{
+  const data=req.body;
+  console.log(data,'edittt')
+  const {id}=req.params;
+  const file=req.file;
+
+  if(!id||!data){
+    res.status(200).json({
+      message:"product id or data missing"
+    })
+  }
+  const imagepath=file?file.path:null;
+
+  const result=await StaffEditService(data,imagepath,id)
+  res.status(200).json({
+    message:"staff edited successfully",
+    response:result
+  })
+})
+
+export const deleteStaff=asyncHandler(async(req,res)=>{
+
+  const {id}=req.params;
+  if(!id){
+    throw new CustomError("id not found",404)
+  }
+  const data=await deleteStaffService(id)
+  res.status(200).json({
+    status:STATUS.SUCCESS,
+    message:"staff deleted successfully",
+    data
+  })
+})

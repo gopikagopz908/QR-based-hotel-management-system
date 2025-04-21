@@ -65,24 +65,33 @@ const Navbar = () => {
             <li>
               <Link
                 to="/"
-                className=" text-gray-800 hover:bg-red-800 hover:text-white text-xl lg:font-semibold  md:text-xl  px-4 py-2 rounded-full transition duration-300"
+                className=" text-gray-800  hover:text-red-500 text-xl lg:font-semibold  md:text-xl  hover:underline "
               >
                 Home
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link
                 to="/menu"
                 className="text-gray-700 hover:text-red-500 font-semibold text-3xl  md:text-xl  transition"
               >
                 Menu
               </Link>
-            </li>
+            </li> */}
+            <li>
+  <Link
+    to="/menu"
+    className="text-gray-700 hover:text-red-500 font-semibold text-3xl md:text-xl transition hover:underline"
+  >
+    Menu
+  </Link>
+</li>
+
             <li>
               <Link
                 to="/about"
-                className="text-gray-700 hover:text-red-500 font-semibold text-3xl  md:text-xl transition"
+                className="text-gray-700 hover:text-red-500 font-semibold text-3xl  md:text-xl transition hover:underline"
               >
                 About
               </Link>
@@ -90,7 +99,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/contact"
-                className="text-gray-700 hover:text-red-500 font-semibold text-3xl  md:text-xl transition"
+                className="text-gray-700 hover:text-red-500 font-semibold text-3xl  md:text-xl transition hover:underline"
               >
                 Contact
               </Link>

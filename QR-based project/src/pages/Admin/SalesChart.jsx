@@ -40,7 +40,7 @@ const SalesChart = () => {
   ];
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 lg:w-250 h-[400px]">
+    <div className="bg-white rounded-2xl shadow-md p-6 lg:w-230 h-[350px]">
       <h2 className="text-xl font-semibold text-gray-700 mb-4">Sales Overview</h2>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
