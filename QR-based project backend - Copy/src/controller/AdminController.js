@@ -6,7 +6,7 @@ import { generateToken } from "../utils/generateToken.js";
 import Qrcode from "../model/qrcodeModel.js";
 import { AdddStaffService, deleteStaffService, getAllProductService, StaffEditService } from "../Service/AdminService.js";
 import CustomError from "../utils/customError.js";
-import e from "express";
+import Staffs from "../model/StaffModel.js";
 // export const generateQRCode = asyncHandler(async (req, res) => {
 //     const url = req.query.url || "https://your-restaurant.com/table/12";
 //     const data = req.query.data || JSON.stringify({ table: "12", restaurant: "FitnessFoodie" });
@@ -141,17 +141,21 @@ export const getQrCode=asyncHandler(async(req,res)=>{
 
 
 export const AddStaffs=asyncHandler(async(req,res)=>{
-  const data=req.body;
+  const   data=req.body;
 
-  const file=req.file;
+  console.log(data,'addddd')
 
-  if(!data||!file){
-    res.status(200).json({
+
+  // const file=req.file;
+
+  if(!data){
+   return res.status(400).json({
       message:"invalid data"
     })
   }
 
-  const result=await AdddStaffService(data,file.path)
+
+  const result=await AdddStaffService(data,)
 
   res.status(200).json({
     message:"staff added successfully",
@@ -165,27 +169,28 @@ export const AddStaffs=asyncHandler(async(req,res)=>{
 
 export const editStaff=asyncHandler(async(req,res)=>{
   const data=req.body;
-  console.log(data,'edittt')
   const {id}=req.params;
-  const file=req.file;
 
-  if(!id||!data){
-    res.status(200).json({
-      message:"product id or data missing"
-    })
+  console.log(data,"bhehvevcge")
+
+  if(!data||!id){
+    throw new CustomError("invalid data or id ")
   }
-  const imagepath=file?file.path:null;
+  const result=await StaffEditService(data,id)  
 
-  const result=await StaffEditService(data,imagepath,id)
-  res.status(200).json({
-    message:"staff edited successfully",
-    response:result
-  })
+  return res.status(200).json({
+    message:"data edited successfully",
+    result
+   })
+
 })
+
+
 
 export const deleteStaff=asyncHandler(async(req,res)=>{
 
   const {id}=req.params;
+  console.log(id,'delllll')
   if(!id){
     throw new CustomError("id not found",404)
   }
@@ -193,6 +198,29 @@ export const deleteStaff=asyncHandler(async(req,res)=>{
   res.status(200).json({
     status:STATUS.SUCCESS,
     message:"staff deleted successfully",
+    data
+  })
+})
+
+
+export const getStaffs=asyncHandler(async(req,res)=>{
+    
+  const staff=await Staffs.find()
+  return res.status(200).json({
+    message:"staff data fetched",
+    staff
+  })
+})
+
+
+
+
+
+export const getStaffById=asyncHandler(async(req,res)=>{
+  const {id}=req.params;
+  const data=await Staffs.findById({_id:id})
+  return res.status(200).json({
+    message:"staff data fetched",
     data
   })
 })

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+
 export function generateToken(data){
    try{
      const token=jwt.sign({
@@ -12,3 +13,4 @@ export function generateToken(data){
 
    }
 }
+

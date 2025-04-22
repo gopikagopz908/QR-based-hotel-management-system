@@ -11,23 +11,28 @@ const staffSchema=new mongoose.Schema({
         required:true
     
     },
-    // password:{
-    //     type:String,
+    password:{
+        type:String,
+        require:true
         
-    // },
+    },
     role:{
         type:String,
         enum:['cheff','supplier'],
         required:true
 
     },
-    image:{
-        type:String,
-        required:true
+    // image:{
+    //     type:String,
+        
+    // },
+    phoneNo:{
+        type:Number,
+        
     },
     isDelete:{
         type:Boolean,
-        required:true
+        default:false
     }
 
 })

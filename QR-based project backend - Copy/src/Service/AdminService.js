@@ -2,6 +2,7 @@ import QRCode from 'qrcode';
 import Products from '../model/productModel.js';
 import Staffs from '../model/StaffModel.js';
 import CustomError from '../utils/customError.js';
+import bcrypt from "bcryptjs";
 
 // export const generateQRCodeService = async (url, data) => {
 //   if (!url || !data) {
@@ -66,31 +67,29 @@ export const getAllProductService = async ({
 
 
 
-export const AdddStaffService=async(data,filepath)=>{
+export const AdddStaffService=async(data)=>{
       
   const{name,password,email,phoneNo,role}=data
 
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
   const newStaff=new Staffs({
     name,
     email,
-    password,
-    image:filepath,
-    role
+    password:hash,
+    // image:filepath,
+    role,
+    phoneNo
   })
    const savedStaff=newStaff.save()
    return savedStaff
 }
 
 
-export const StaffEditService=async(_id,...editItems)=>{
+export const StaffEditService=async(data,id)=>{
 
-   const existing=await Staffs.findById(id)
-
-   if(!existing){
-    throw new CustomError("staff is unavailable",400)
-   }
-
-  const edit=await Staffs.findByIdAndUpdate({_id},{$set:{...editItems}},{new:true})
+     const edit=await Staffs.findByIdAndUpdate({_id:id},{$set:{...data}},{new:true})
+     console.log(edit,"editttttt")
   return edit
 }
 

@@ -1,5 +1,4 @@
-const mongoose=require('mongoose')
-
+import mongoose from "mongoose";
 
 const userSchema=new mongoose.Schema({
    
@@ -10,7 +9,7 @@ const userSchema=new mongoose.Schema({
     email:{
         type:String,
         required:true,
-        uniqueq:true
+        unique:true
     },
     isBlocked:{
         type:Boolean,
@@ -18,8 +17,9 @@ const userSchema=new mongoose.Schema({
     },
     createdAt:{
         type:Date,
-        default:Date.now
-    }
-})
+      default:Date.now
+    }})
 
-module.exports=mongoose.model('User',userSchema)
+const User=mongoose.model('User',userSchema)
+
+export default User;
