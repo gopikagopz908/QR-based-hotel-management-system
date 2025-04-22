@@ -20,6 +20,7 @@ import Table from './pages/Admin/Table'
 import { useAuthContext } from './context/authContext'
 import AdminLoginPage from './pages/Admin/LoginPage'
 import StaffTable from './pages/Staff'
+import UserLogin from './pages/UserLogin'
 // import AdminOrders from './pages/Admin/Orders'
 function App() {
   const {role}=useAuthContext();
@@ -47,7 +48,7 @@ function App() {
           <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/menu" element={<Menu/>}/>
-
+          <Route path="/login" element={<UserLogin/>}/>
         </Route>
         <Route path="/orders" element={<Orders/>}/>
 
