@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { StaffAdd, StaffEdit } from '../hooks/staffHooks';
+import axiosInstance from '../Api/axiosInstance';
+import { useQuery } from '@tanstack/react-query';
 
-const AddStaffModal = ({  onClose, onSubmit }) => {
+const AddStaffModal = ({  onClose,id}) => {
   const [staff, setStaff] = useState({
     name: '',
     email: '',
@@ -9,7 +12,7 @@ const AddStaffModal = ({  onClose, onSubmit }) => {
     phoneNo: '',
     image: null,
   });
-
+  // const { mutate, isSuccess, isError, error } = useAddStaff();
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'image') {
@@ -19,11 +22,52 @@ const AddStaffModal = ({  onClose, onSubmit }) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(staff); // Call parent handler with staff data
-  };
 
+
+
+
+
+
+
+
+    const {
+      data=[],isLoading,isError
+  
+      
+    }=useQuery({
+      queryKey:["staff"],
+      queryFn:async()=>{
+      const response=await axiosInstance.get(`admin/getStaffById/${id}`)
+        return response.data.data
+      },
+      enabled: !!id
+   })
+
+  
+    
+   useEffect(() => {
+    if (data) {
+ 
+      setStaff({
+        name: data.name || '',
+        email: data.email || '',
+        password: data.password || '',
+        role: data.role || '',
+        phoneNo: data.phoneNo || '',
+        image: null,
+      });
+    }
+  }, [data]);
+ 
+const handleSubmit = (e) => {
+e.preventDefault();
+if(id){
+StaffEdit(staff,id)
+}else{
+  StaffAdd(staff)
+}
+onClose()
+ };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center  bg-opacity-50">
@@ -34,6 +78,7 @@ const AddStaffModal = ({  onClose, onSubmit }) => {
             name="name"
             type="text"
             placeholder="Name"
+            value={staff.name}
             className="w-full border rounded p-2"
             onChange={handleChange}
             required
@@ -42,27 +87,33 @@ const AddStaffModal = ({  onClose, onSubmit }) => {
             name="email"
             type="email"
             placeholder="Email"
+            value={staff.email}
             className="w-full border rounded p-2"
             onChange={handleChange}
             required
           />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            className="w-full border rounded p-2"
-            onChange={handleChange}
-            required
-          />
+          
+      <input
+      name="password"
+      type="password"
+      placeholder="Password"
+      value={staff.password}
+      className="w-full border rounded p-2"
+       onChange={handleChange}
+      required
+    />
+
+    
           <select
   name="role"
   className="w-full border rounded p-2"
   onChange={handleChange}
   required
-  defaultValue=""
+  defaultValue={staff.role}
+  value={staff.role}
 >
   <option value="" disabled>Select Role</option>
-  <option value="chef">Cheff</option>
+  <option value="cheff">Cheff</option>
   <option value="supplier">Supplier</option>
 </select>
 
@@ -70,19 +121,20 @@ const AddStaffModal = ({  onClose, onSubmit }) => {
             name="phoneNo"
             type="tel"
             placeholder="Phone Number"
+            value={staff.phoneNo}
             className="w-full border rounded p-2"
             onChange={handleChange}
             required
           />
-          <input
+          {/* <input
             name="image"
             type="file"
             accept="image/*"
             className="w-full"
             onChange={handleChange}
             required
-          />
-
+          /> */}
+        
           <div className="flex justify-end gap-2">
             <button
               type="button"
