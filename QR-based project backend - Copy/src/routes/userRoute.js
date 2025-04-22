@@ -1,6 +1,6 @@
 import express from 'express'
-import { userLogin } from '../controller/userController.js'
-import { otpVerify } from '../Service/userService.js'
+import { userLogin,otpVerify } from '../controller/userController.js'
+
 
 
 const userRoute=express()
@@ -8,7 +8,7 @@ const userRoute=express()
 
 userRoute.post('/userLogin',userLogin)
 
-userRoute.post('/user/verify',otpVerify)
+userRoute.post('/otp/verify',otpVerify)
 
 
-export default userRoute;
+export default userRoute;    

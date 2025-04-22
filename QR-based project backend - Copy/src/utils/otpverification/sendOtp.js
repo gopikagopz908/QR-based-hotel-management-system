@@ -59,7 +59,7 @@ const sendOtp = async (id,email) => {
         return {
             status:201,
             message: 'Verification email has been sent to your account. Check your email for further instructions.',
-            data: user,  
+              
 };
     } catch (error) {
         console.error('Error sending verification email:', error);
