@@ -29,7 +29,7 @@ function About() {
       </div> */}
       <div className="flex flex-col md:flex-row items-center justify-center px-4 md:px-6 py-10 gap-8 bg-gray-100 min-h-screen">
  
-  <div className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[600px] lg:h-[500px] lg:w-[600px] flex justify-center items-center overflow-hidden">
+  <div className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[600px] lg:h-[450px] lg:w-[450px] flex justify-center items-center overflow-hidden">
     <img
       src="https://i.pinimg.com/736x/0c/e6/5c/0ce65c400915efb0d7439e271c2e231f.jpg"
       alt="Healthy Food"
@@ -42,8 +42,8 @@ function About() {
     <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-5xl font-bold text-gray-800 mb-6 font-primary leading-tight">
       We serve wholesome, nutritious meals for your family.
     </h1>
-    <p className="text-gray-600 text-base sm:text-lg  lg:text-xl">
-      Our story began with a vision to create a unique dining experience
+    <p className="text-gray-600 text-base sm:text-lg  lg:text-base font-serif">
+      "Our story began with a vision to create a unique dining experience
       that merges fine dining, exceptional service, and a vibrant
       ambiance. Rooted in the city's rich culinary culture, we aim to
       honor our local roots while infusing a global palate".
@@ -63,7 +63,7 @@ function About() {
     <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-red-700 mb-2">
       “The best restaurant”
     </h3>
-    <p className="text-gray-600 text-sm sm:text-base lg:text-sm">
+    <p className="text-gray-600 text-sm sm:text-base lg:text-sm font-serif">
       Last night, we dined at this place and were simply blown away.
       From the moment we stepped in, we were enveloped in an inviting
       atmosphere and greeted with warm smiles.
@@ -86,7 +86,7 @@ function About() {
     <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-red-700 mb-2">
       “Simply delicious”
     </h3>
-    <p className="text-gray-600 text-sm sm:text-base lg:text-sm">
+    <p className="text-gray-600 text-sm sm:text-base lg:text-sm font-serif">
       This place exceeded my expectations on all fronts. The ambiance
       was cozy and relaxed, making it a perfect venue for our
       anniversary dinner. Each dish was beautifully presented.
@@ -110,7 +110,7 @@ function About() {
     <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-red-700 mb-2">
       “One of a kind restaurant”
     </h3>
-    <p className="text-gray-600 text-sm sm:text-base lg:text-sm">
+    <p className="text-gray-600 text-sm sm:text-base lg:text-sm font-serif">
       The culinary experience at this place is second to none. The
       atmosphere is vibrant, and the food is nothing short of
       extraordinary. Highly recommended.

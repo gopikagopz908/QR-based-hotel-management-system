@@ -1,12 +1,16 @@
+
 import React, { useState } from 'react';
 import OtpModal from '../components/OtpModal';
+import useUserLogin from '../hooks/useUserLogin';
 
 const UserLogin = () => {
-    const [isModal,setIsModal]=useState(false)
+  const [isModal, setIsModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
   });
+
+  const { loading, usersLogin } = useUserLogin();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -16,17 +20,28 @@ const UserLogin = () => {
     }));
   };
 
-
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted Data:', formData);
-    setIsModal(true)
-    // You can send this data to your backend or use it as needed
+    const { email, name } = formData;
+
+    if (!email || !name) {
+      console.log('Please fill in all fields');
+      return;
+    }
+
+    const data = { email, name };
+
+    try {
+      await usersLogin(data);
+      console.log('Submitted Data:', data);
+      setIsModal(true); // Only show OTP modal if login is successful
+    } catch (err) {
+      console.error('Login failed:', err);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-red-100 p-8 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">User Login</h2>
         <form className="space-y-5" onSubmit={handleSubmit}>
@@ -60,13 +75,12 @@ const UserLogin = () => {
             type="submit"
             className="w-full bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition duration-300 font-semibold"
           >
-            Login
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>
-      {isModal &&<OtpModal/>}
-
-    </div>
+      {isModal && <OtpModal email={formData.email} />}
+      </div>
   );
 };
 

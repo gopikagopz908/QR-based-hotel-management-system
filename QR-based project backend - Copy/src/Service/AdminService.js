@@ -17,8 +17,8 @@ import bcrypt from "bcryptjs";
 
 export const getAllProductService = async ({
   category,
-  // page = 1,
-  // limit = 10,
+  page = 1,
+  limit = 3,
   search,
 }) => {
   //sets default values for pagination
@@ -35,12 +35,12 @@ export const getAllProductService = async ({
     ];
   }
 
-  // const skip = (page - 1) * limit; //calculates  howmany documents to skip
+   const skip = (page - 1) * limit; //calculates  howmany documents to skip
  
   const totalProducts = await Products.countDocuments(query); //total product count
 
-  // const products = await Products.find(query).skip(skip).limit(limit);
-  const products = await Products.find(query);
+  const products = await Products.find(query).skip(skip).limit(limit);
+  // const products = await Products.find(query);
   return {
     products,
     totalProducts

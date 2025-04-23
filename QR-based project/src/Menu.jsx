@@ -58,7 +58,7 @@ const Menu = () => {
 <h1 className="text-4xl  sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl  font-bold text-center text-gray-800 font-primary ">
 🍽️ Our Menu
       </h1>
-      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 tracking-wide font-light text-center font-poppins max-w-full sm:max-w-3xl mx-auto px-4">
+      <p className="text-sm sm:text-base md:text-lg lg:text-base text-gray-700 tracking-wide font-light text-center font-serif max-w-full sm:max-w-3xl mx-auto px-4">
   "We take every detail into account, bringing you the finest ingredients and flavors to craft an unforgettable dining experience".
 </p>
 
