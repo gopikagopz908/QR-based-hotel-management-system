@@ -68,7 +68,9 @@ export const userLogin = async (req, res) => {
     await Otp.deleteOne({ _id: otpEntry._id });
   
     const token = generateToken(user._id);
-  
+   
+  res
+  .cookie('token',token, { httpOnly: true, secure: false, maxAge: 3 * 24 * 60 * 60 * 1000, path: '/' })
     return res.status(200).json({
       message: "User verified successfully",
       user,

@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const orderSchema=new mongoose.Schema({
-    // user:{
-    //     type:mongoose.Types.ObjectId,
-    //     ref:'User',
-    //     required:true
-    // },
+    user:{
+        type:mongoose.Types.ObjectId,
+        ref:'User',
+        required:true
+    },
     items:[{
-        productId:{
+        productId:{   
             type:mongoose.Types.ObjectId,
             ref:'product',
             required:true

@@ -13,6 +13,7 @@ adminRoute.post('/login',adminLogin)
 
 adminRoute.post('/addStaff',AddStaffs)
 adminRoute.put('/editStaff/:id',editStaff)
+
 adminRoute.delete('/deleteStaff/:id',deleteStaff)
 
 adminRoute.get('/getStaff',getStaffs)

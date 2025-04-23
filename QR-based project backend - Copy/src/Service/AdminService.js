@@ -18,7 +18,7 @@ import bcrypt from "bcryptjs";
 export const getAllProductService = async ({
   category,
   page = 1,
-  limit = 3,
+  limit = 10,
   search,
 }) => {
   //sets default values for pagination
@@ -100,10 +100,11 @@ export const deleteStaffService=async(id)=>{
   if(!existingstaff){
     throw new CustomError("staff not found",404)
   }
-  const response=await Staffs.findByIdAndUpdate(
+  const response=await Staffs.findByIdAndDelete(
     id,
     {isDelete:true},
     {new:true}
+)
 
-  )
+console.log(response,"ressssponssss")
 }

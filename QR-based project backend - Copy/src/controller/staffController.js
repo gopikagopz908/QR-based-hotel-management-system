@@ -3,14 +3,18 @@ import { staffLoginService } from "../Service/StaffService.js";
 import CustomError from "../utils/customError.js";
 
 export const staffLogin=asyncHandler(async(req,res)=>{
-    const {email}=req.body;
+    const {email,password}=req.body;
 
-    if(!email||!password){
+    if(!email||!password){ 
         throw new CustomError("email and password is required")
     }
-
-    const result=await staffLoginService(email)
+    const {token,role}=await staffLoginService(email,password)
      
+
+    res.status(200).json({
+        message:"staff logined successfully",
+        token,role
+    })
     
 })
 

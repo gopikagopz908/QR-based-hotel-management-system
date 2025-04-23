@@ -3,55 +3,17 @@ import AddStaffModal from "../components/staffModal";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../Api/axiosInstance";
 import { StaffDelete } from "../hooks/staffHooks";
+import { StaffEditService } from "../../../QR-based project backend - Copy/src/Service/AdminService";
 
 const StaffTable = () => {
     
-    //     {
-    //       name: "John Doe",
-    //       email: "john@example.com",
-    //       password: "********",
-    //       role: "Manager",
-    //       phoneNo: "9876543210"
-    //     },
-    //     {
-    //       name: "Jane Smith",
-    //       email: "jane@example.com",
-    //       password: "********",
-    //       role: "Chef",
-    //       phoneNo: "9123456789"
-    //     },
-    //     {
-    //         name: "Jane Smith",
-    //         email: "jane@example.com",
-    //         password: "********",
-    //         role: "Chef",
-    //         phoneNo: "9123456789"
-    //       },
-    //       {
-    //         name: "Jane Smith",
-    //         email: "jane@example.com",
-    //         password: "********",
-    //         role: "Chef",
-    //         phoneNo: "9123456789"
-    //       },
-    //       {
-    //         name: "Jane Smith",
-    //         email: "jane@example.com",
-    //         password: "********",
-    //         role: "Chef",
-    //         phoneNo: "9123456789"
-    //       }
-    //   ];
+   
       
       const[isModal,setModal]=useState(false)
 
       const[id,setId]=useState('')
 
-      function deleteStaff(){
-        
-        StaffDelete(id)
-
-      }
+ 
      
       const {
         data=[],isLoading,isError,refetch
@@ -77,6 +39,11 @@ const StaffTable = () => {
         refetch();
         setModal(false)
        
+ }
+
+      const handleDelete=(id)=>{
+        StaffDelete(id)
+        refetch()
       }
      
   return (
@@ -117,7 +84,7 @@ const StaffTable = () => {
               <td className="p-3">{staff.phoneNo}</td>
               <td className="p-3">
                     <td className="flex space-x-2">
-                      <button onClick={()=>deleteStaff(staff._id)}  className="bg-black text-white px-3 py-1 rounded text-xs">
+                      <button onClick={()=>handleDelete(staff._id)}  className="bg-black text-white px-3 py-1 rounded text-xs">
                         Delete
                       </button>
                     </td>
@@ -133,7 +100,14 @@ const StaffTable = () => {
           ))}
         </tbody>
       </table>
-      {isModal && <AddStaffModal id={id}   onClose={()=>closeModal()}/>}
+      {isModal && <AddStaffModal id={id} 
+          onClose={() => setModal(false)}
+          onSuccess={() => {
+            refetch();
+            setModal(false);
+          }}
+
+        />}
     </div>
   );
 };

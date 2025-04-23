@@ -23,18 +23,9 @@ const AddStaffModal = ({  onClose,id}) => {
   };
 
 
-
-
-
-
-
-
-
-    const {
+ const {
       data=[],isLoading,isError
-  
-      
-    }=useQuery({
+   }=useQuery({
       queryKey:["staff"],
       queryFn:async()=>{
       const response=await axiosInstance.get(`admin/getStaffById/${id}`)
@@ -43,9 +34,7 @@ const AddStaffModal = ({  onClose,id}) => {
       enabled: !!id
    })
 
-  
-    
-   useEffect(() => {
+  useEffect(() => {
     if (data) {
  
       setStaff({
@@ -57,7 +46,7 @@ const AddStaffModal = ({  onClose,id}) => {
         image: null,
       });
     }
-  }, [data]);
+  }, []);
  
 const handleSubmit = (e) => {
 e.preventDefault();

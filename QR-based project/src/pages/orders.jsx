@@ -5,8 +5,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const { state } = useLocation();
+  
+  const products=state?.selectedItems.map((item)=>item._id)
   const navigate = useNavigate();
-
+  localStorage.setItem("orders", JSON.stringify(products));
   const initialItems =
     state?.selectedItems?.map((item) => ({
       ...item,
@@ -98,7 +100,7 @@ const Orders = () => {
               Total: ₹{total}
             </div>
             <button
-              onClick={() => alert("Proceeding to payment...")}
+              onClick={() =>navigate('/login') }
               className="bg-red-800 text-white text-lg sm:text-xl  lg:text-xl font-semibold px-6 sm:px-8 py-4 sm:py-5 lg:py-2 rounded-full hover:bg-red-700 transition"
             >
               Pay Now

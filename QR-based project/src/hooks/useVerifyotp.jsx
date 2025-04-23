@@ -12,6 +12,7 @@ function useVerify(){
    try {
     const res=await axiosInstance.post('/user/otp/verify',data)
     console.log(res.data)
+    return res
    } catch (error) {
     console.log(error)
     

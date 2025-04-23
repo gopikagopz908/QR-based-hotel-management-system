@@ -2,23 +2,45 @@ import asyncHandler from "../Middlewares/asyncHandler.js";
 import { addOrderService, verifyPaymentService } from "../Service/orderService.js";
 import { STATUS } from "../utils/constant.js";
 
+// export const addOrder=asyncHandler(async(req,res)=>{
+//     const userId=req.user._id;
+//     const{paymentMethod,items,total}=req.body;
+//     console.log(items,"nhgydgyg")
+  
+
+  
+//    const {order,razorpayOrderId} =await addOrderService(paymentMethod,items,total)
+//    console.log(order,razorpayOrderId,"gopzzz")
+
+//     res.status(200).json({
+//         status:STATUS.SUCCESS,
+//         message:"order placed successfully",
+//         order,
+//         razorpayOrderId
+//     })
+// })
+
 export const addOrder=asyncHandler(async(req,res)=>{
-    // const userId=req.user._id;
-    const{paymentMethod,items,total}=req.body;
-    console.log(items,"nhgydgyg")
-  
+  const userId=req.user._id;
+  const{paymentMethod,items,total}=req.body;
+  console.log(items,"nhgydgyg")
 
-  
-   const {order,razorpayOrderId} =await addOrderService(paymentMethod,items,total)
-   console.log(order,razorpayOrderId,"gopzzz")
 
-    res.status(200).json({
-        status:STATUS.SUCCESS,
-        message:"order placed successfully",
-        order,
-        razorpayOrderId
-    })
+
+ const {order,razorpayOrderId} =await addOrderService(paymentMethod,items,total)
+ console.log(order,razorpayOrderId,"gopzzz")
+
+  res.status(200).json({
+      status:STATUS.SUCCESS,
+      message:"order placed successfully",
+      order,
+      razorpayOrderId
+  })
 })
+
+
+
+
 export const verifyPayment = asyncHandler(async (req, res) => {
     const { paymentId, orderId } = req.body;
     

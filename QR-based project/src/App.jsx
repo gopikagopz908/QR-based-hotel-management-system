@@ -13,7 +13,7 @@ import About from './About'
 import Contact from './Contact'
 import Menu from './Menu'
 import Orders from './pages/orders'
-import AdminLayout from './pages/Admin/AdminLayout'
+// import AdminLayout from './pages/Admin/AdminLayout'
 import DashBoard from './pages/Admin/DashBoard'
 import Foods from './pages/Foods'
 import Table from './pages/Admin/Table'
@@ -21,6 +21,8 @@ import { useAuthContext } from './context/authContext'
 import AdminLoginPage from './pages/Admin/LoginPage'
 import StaffTable from './pages/Staff'
 import UserLogin from './pages/UserLogin'
+import AdminLayout from './pages/Admin/AdminLayout'
+import ChefOrders from './pages/Admin/chefOrders'
 // import AdminOrders from './pages/Admin/Orders'
 function App() {
   const {role}=useAuthContext();
@@ -30,11 +32,12 @@ function App() {
       <Routes>
       <Route path='/admin/login' element={<AdminLoginPage/>} />
 {role ? (
- <Route path="/admin" element={<AdminLayout />}>
+ <Route path="/admin" element={<AdminLayout/>}>
  <Route index element={<DashBoard/>}/>
  <Route path="foods" element={<Foods/>}/>
  <Route path="tables" element={<Table/>}/>
  <Route path="staffs"  element={<StaffTable/>}/>
+ <Route path="cheff"  element={<ChefOrders/>}/>
  {/* <Route path="orders" element={<AdminOrders/>}/> */}
 </Route>
 ):(

@@ -11,8 +11,7 @@ const AddFoodModal = ({ isOpen, onClose,ids }) => {
       console.log("object")
       GetSingle(ids);
     }
-  
-  }, [ids]);
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -23,15 +22,7 @@ const AddFoodModal = ({ isOpen, onClose,ids }) => {
   });
 
 
-useEffect(()=>{
-setFormData({
-  name:singleProduct?.name,
-  price:singleProduct?.price,
-  image:singleProduct?.image,
-  description:singleProduct?.description,
-  category:singleProduct?.category,
-})
-},[ids])
+
 useEffect(() => {
   if (singleProduct) {
     setFormData({
@@ -49,9 +40,7 @@ useEffect(() => {
   }
 }, [singleProduct]);
 
-
-
-  const [preview, setPreview] = useState(null);
+const [preview, setPreview] = useState(null);
  const{loading,AddProduct}=useAddProduct()
 
  const {editProduct}=useEditProduct()
