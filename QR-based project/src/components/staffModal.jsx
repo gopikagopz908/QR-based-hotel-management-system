@@ -3,7 +3,7 @@ import { StaffAdd, StaffEdit } from '../hooks/staffHooks';
 import axiosInstance from '../Api/axiosInstance';
 import { useQuery } from '@tanstack/react-query';
 
-const AddStaffModal = ({  onClose,id}) => {
+const AddStaffModal = ({  onClose,id,setId}) => {
   const [staff, setStaff] = useState({
     name: '',
     email: '',
@@ -46,7 +46,7 @@ const AddStaffModal = ({  onClose,id}) => {
         image: null,
       });
     }
-  }, []);
+  }, [id]);
  
 const handleSubmit = (e) => {
 e.preventDefault();
@@ -55,6 +55,7 @@ StaffEdit(staff,id)
 }else{
   StaffAdd(staff)
 }
+setId("")
 onClose()
  };
 

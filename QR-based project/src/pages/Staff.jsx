@@ -35,9 +35,11 @@ const StaffTable = () => {
 
 
       function closeModal(){
-        console.log("success")
-        refetch();
         setModal(false)
+        refetch();
+        setId("")
+    
+      
        
  }
 
@@ -46,6 +48,7 @@ const StaffTable = () => {
         refetch()
       }
      
+      console.log(id,"iddddd")
   return (
     <div className="overflow-x-auto mt-2 px-4 ">
         <div className="flex justify-end p-4">
@@ -100,12 +103,11 @@ const StaffTable = () => {
           ))}
         </tbody>
       </table>
-      {isModal && <AddStaffModal id={id} 
-          onClose={() => setModal(false)}
-          onSuccess={() => {
-            refetch();
-            setModal(false);
-          }}
+      {isModal && <AddStaffModal 
+      id={id} 
+      setId={setId}
+         onClose={() =>closeModal()}
+
 
         />}
     </div>
