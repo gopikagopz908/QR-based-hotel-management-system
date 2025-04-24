@@ -1,14 +1,12 @@
-
-
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const { state } = useLocation();
-  
   const products=state?.selectedItems.map((item)=>item._id)
   const navigate = useNavigate();
-  localStorage.setItem("orders", JSON.stringify(products));
+
+ 
   const initialItems =
     state?.selectedItems?.map((item) => ({
       ...item,
@@ -33,9 +31,12 @@ const Orders = () => {
   };
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
+  console.log(items,"itmsss")
+  const data={items,total}
+  console.log(data,"dataaa")
+  localStorage.setItem("orders", JSON.stringify(data));
   return (
-    <div className=" mx-auto mt-0 px-2 pb-20 bg-gray-200 ">
+    <div className=" mx-auto mt-0 px-2 pb-20 bg-gray-200 "> 
       <h1 className="text-2xl sm:text-3xl  lg:text-4xl font-bold mb-20 text-center text-red-800 font-poppins">
         🧾 Your Order Summary
       </h1>

@@ -23,6 +23,7 @@ import StaffTable from './pages/Staff'
 import UserLogin from './pages/UserLogin'
 import AdminLayout from './pages/Admin/AdminLayout'
 import ChefOrders from './pages/Admin/chefOrders'
+import AdminOrdersPage from './pages/Admin/Orders'
 // import AdminOrders from './pages/Admin/Orders'
 function App() {
   const {role}=useAuthContext();
@@ -38,6 +39,7 @@ function App() {
  <Route path="tables" element={<Table/>}/>
  <Route path="staffs"  element={<StaffTable/>}/>
  <Route path="cheff"  element={<ChefOrders/>}/>
+ <Route path="orders" element={<AdminOrdersPage/>}/>
  {/* <Route path="orders" element={<AdminOrders/>}/> */}
 </Route>
 ):(

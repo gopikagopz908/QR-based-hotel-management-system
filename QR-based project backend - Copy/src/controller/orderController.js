@@ -1,5 +1,6 @@
 import asyncHandler from "../Middlewares/asyncHandler.js";
-import { addOrderService, verifyPaymentService } from "../Service/orderService.js";
+import Order from "../model/orderModel.js";
+import { addOrderService, getAllOrderService, verifyPaymentService } from "../Service/orderService.js";
 import { STATUS } from "../utils/constant.js";
 
 // export const addOrder=asyncHandler(async(req,res)=>{
@@ -21,14 +22,13 @@ import { STATUS } from "../utils/constant.js";
 // })
 
 export const addOrder=asyncHandler(async(req,res)=>{
-  const userId=req.user._id;
-  const{paymentMethod,items,total}=req.body;
-  console.log(items,"nhgydgyg")
+ const userId=req.user.data;
+ if(!userId){
+  res.status(400).json({message:"Invalid User"})
+ }
+ const{paymentMethod,products,total}=req.body;
+  const {order,razorpayOrderId} =await addOrderService(paymentMethod,products,total,userId)
 
-
-
- const {order,razorpayOrderId} =await addOrderService(paymentMethod,items,total)
- console.log(order,razorpayOrderId,"gopzzz")
 
   res.status(200).json({
       status:STATUS.SUCCESS,
@@ -79,3 +79,54 @@ export const verifyPayment = asyncHandler(async (req, res) => {
 
 
 
+export const orderDetails=asyncHandler(async(req,res)=>{
+  const orderList=await getAllOrderService()
+  res.json({
+      status:STATUS.SUCCESS,
+      message:"order list....",
+      order:orderList,
+
+  })
+})
+
+// export const singleOrder=asyncHandler(async(req,res)=>{
+//   const {id}=req.params;
+  
+//   const order=await Order.findOne({user:id})
+  
+//       .populate({
+//           path: 'items.productId',
+
+//         });
+  
+//   res.status(200).json({
+//     status:STATUS.SUCCESS,
+//     message:"order viewed successfully",
+//     order
+
+
+//   })
+  
+// })
+
+export const singleOrder = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const order = await Order.findById(id).populate({
+    path: 'items.productId',
+    model: "Products",
+  });
+
+  if (!order) {
+    return res.status(404).json({
+      status: STATUS.FAIL,
+      message: "Order not found",
+    });
+  }
+
+  res.status(200).json({
+    status: STATUS.SUCCESS,
+    message: "Order viewed successfully",
+    order,
+  });
+});
