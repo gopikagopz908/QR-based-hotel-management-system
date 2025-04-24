@@ -21,12 +21,12 @@ export const getAllProductService = async ({
   limit = 10,
   search,
 }) => {
-  //sets default values for pagination
+
   const query = { isDelete: false };
 
   if (category) {
-    //category filtering
-   query.category = { $regex: `^${category}$`, $options: "i" }; //mongodbs regular exprsn
+    
+   query.category = { $regex: `^${category}$`, $options: "i" }; 
   }   
   if (search) {
     query.$or = [
@@ -35,17 +35,42 @@ export const getAllProductService = async ({
     ];
   }
 
-   const skip = (page - 1) * limit; //calculates  howmany documents to skip
+   const skip = (page - 1) * limit; 
  
-  const totalProducts = await Products.countDocuments(query); //total product count
+  const totalProducts = await Products.countDocuments(query); 
 
-  const products = await Products.find(query).skip(skip).limit(limit);
+  // const products = await Products.find(query).skip(skip).limit(limit);
   // const products = await Products.find(query);
+  const products = await Products.aggregate([
+    { $match: query },
+    {
+      $addFields: {
+        hasCreatedAt: { $cond: [{ $ifNull: ["$createdAt", false] }, 1, 0] },
+      },
+    },
+    {
+      $sort: {
+        hasCreatedAt: -1,      // First: items that have createdAt
+        createdAt: -1,         // Then: sort by newest
+      },
+    },
+    { $skip: skip },
+    { $limit: limit },
+  ]);
+  
   return {
     products,
     totalProducts
   };
 };
+
+
+
+
+
+
+
+
 
 
 

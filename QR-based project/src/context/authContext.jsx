@@ -9,7 +9,7 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({ children }) => { 
   const storedRole = localStorage.getItem('role');
   const [role, setRole] = useState(storedRole || '');
-
+  
   return (
     <AuthContext.Provider value={{ role, setRole }}>
       {children}

@@ -10,8 +10,7 @@ export const staffLogin=asyncHandler(async(req,res)=>{
     }
     const {token,role}=await staffLoginService(email,password)
      
-
-    res.status(200).json({
+     res.status(201).json({
         message:"staff logined successfully",
         token,role
     })

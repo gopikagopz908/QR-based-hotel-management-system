@@ -34,11 +34,12 @@ export const editProductService=async(_id,updateItems)=>{
 }
 
 export const deleteProductService=async(id)=>{
+
     const existingProduct=await Products.findById(id)
     if(!existingProduct){
         throw new CustomError("product not found",404)
     }
-    return await Products.findByIdAndUpdate(
+    return await Products.findByIdAndDelete(
         id,
         {isDelete:true},
         {new:true}

@@ -22,13 +22,14 @@ const staffSchema=new mongoose.Schema({
         required:true
 
     },
-    // image:{
-    //     type:String,
-        
-    // },
+
     phoneNo:{
         type:Number,
         
+    },
+    priority:{
+        type:Number,
+        default:1
     },
     isDelete:{
         type:Boolean,

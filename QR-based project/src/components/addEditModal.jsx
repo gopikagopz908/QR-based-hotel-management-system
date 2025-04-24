@@ -4,14 +4,20 @@ import useEditProduct from '../hooks/useEditProducts';
 import useSingleproduct from '../hooks/useSingleproduct';
 
 const AddFoodModal = ({ isOpen, onClose,ids }) => {
-  const{singleProduct,GetSingle}=useSingleproduct()
-  useEffect(() => {
 
-    if(ids){
-      console.log("object")
-      GetSingle(ids);
-    }
-  }, []);
+const{singleProduct,GetSingle}=useSingleproduct()
+
+
+useEffect(() => {
+  if (ids) {
+    GetSingle(ids);
+  }
+}, [ids]);
+
+
+console.log(singleProduct,"dddfffdddf")
+
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -24,7 +30,7 @@ const AddFoodModal = ({ isOpen, onClose,ids }) => {
 
 
 useEffect(() => {
-  if (singleProduct) {
+  if (ids) {
     setFormData({
       name: singleProduct.name || '',
       price: singleProduct.price || '',
@@ -83,14 +89,11 @@ console.log(form,"formmm")
     console.log(formData,"gffgnfgn")
     AddProduct(form)
   }else{
-
-   
-    
 editProduct(ids,form)
   }
 
     
-    // You can optionally handle image upload here (e.g., to Cloudinary)
+
   
   
 
@@ -102,7 +105,7 @@ editProduct(ids,form)
       category: '',
     });
     setPreview(null);
-    onClose();
+   onClose();
   };
 
   if (!isOpen) return null;
@@ -155,25 +158,7 @@ editProduct(ids,form)
             onChange={handleChange}
             className="w-full border border-red-500 rounded-lg p-2"
           />
-{/* 
-          <div className="relative">
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full border border-red-500 rounded-lg p-2 bg-white appearance-none"
-              required
-            >
-              <option value="">Select Category</option>
-              <option value="Veg">Veg</option>
-              <option value="nonVeg">nonVeg</option>
-              <option value="Drinks">Drinks</option>
-              <option value="Desserts">Desserts</option>
-            </select>
-            <div className="pointer-events-none absolute right-3 top-3 text-gray-500">
-              ▼
-            </div>
-          </div> */}
+
 
 
 <div className="relative pointer-events-none">

@@ -1,5 +1,5 @@
 import express from 'express'
-import { AddStaffs, adminLogin, deleteStaff, editStaff, generateQRCode, getQrCode, getStaffById, getStaffs } from '../controller/AdminController.js'
+import { AddStaffs, adminLogin, deleteStaff, editStaff, generateQRCode, getPaginatedProducts, getQrCode, getStaffById, getStaffs } from '../controller/AdminController.js'
 import { upload } from '../configuration/cloudinaryconfig.js'
 
 
@@ -18,4 +18,8 @@ adminRoute.delete('/deleteStaff/:id',deleteStaff)
 
 adminRoute.get('/getStaff',getStaffs)
 adminRoute.get('/getStaffById/:id',getStaffById)
+
+adminRoute.get('/pagination',getPaginatedProducts)
+
 export default adminRoute;
+

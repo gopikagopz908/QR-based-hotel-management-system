@@ -1,7 +1,6 @@
 import axiosInstance from "../Api/axiosInstance";
 // import { useMutation } from '@tanstack/react-query';
 
-
 export const StaffAdd=async(staffData)=>{
     console.log("success")
     const response = await axiosInstance.post('/admin/addStaff',staffData);

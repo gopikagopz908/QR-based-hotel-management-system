@@ -92,6 +92,7 @@ const loadRazorpayScript = (src) => {
 
 const useRazorpayPayment = () => {
   const openRazorpayPayment = useCallback(async (orderData) => {
+
     console.log(orderData,"orderData")
     console.log('Initiating Razorpay payment with orderData:', orderData);
 

@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import useVerify from '../hooks/useVerifyotp';
 import useRazorpayPayment from '../hooks/razorPayHook';
 import useOrder from '../hooks/orderHook';
+import { Navigate } from 'react-router-dom';
 
 const OtpModal = ({ email }) => {
   const inputsRef = useRef([]);
@@ -47,8 +48,9 @@ const OtpModal = ({ email }) => {
         alert("No order data found in localStorage.");
         return;
       }
-
-      openRazorpayPayment(orderData);
+    await openRazorpayPayment(orderData);
+    Navigate('/')
+    
     } else {
       alert("Invalid OTP. Please try again.");
     }

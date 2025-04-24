@@ -7,6 +7,7 @@ function useSingleproduct() {
 
   
   const GetSingle = async (id) => {
+    console.log(id,"rgdrhd")
     setLoading(true);
     try {
       const response = await axiosInstance.get(`/product/${id}`);

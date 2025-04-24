@@ -1,17 +1,14 @@
+
+
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import axiosInstance from '../../Api/axiosInstance';
 
-
-
-
-
-
-const AdminOrdersPage = () => {
+const  AdminProductList = () => {
   const [filterStatus, setFilterStatus] = useState('All');
   const queryClient = useQueryClient();
 
-  // Fetch all orders
+  
   const { data = [], isLoading, isError,refetch } = useQuery({
     queryKey: ['order'],
     queryFn: async () => {
@@ -24,33 +21,11 @@ const AdminOrdersPage = () => {
 
 
 
-  const { mutate: updateOrderStatus } = useMutation({
-    mutationFn: async ({ orderId, newStatus }) => {
-      const response = await axiosInstance.patch(`order/orderStatus/${orderId}`, {
-        status: newStatus,
-      });
-      return response.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['order']); 
-    },
-    onError: (error) => {
-      console.error('Failed to update status:', error);
-    },
-  });
+
 
   
-  const handleStatusChange = (orderId, newStatus) => {
-    updateOrderStatus({ orderId, newStatus });
-    refetch()
-  };
 
 
-  console.log(data,"dataaa")
-  const filteredOrders =data.order?.filter((order) => order.status ==="placed");
-
-
-      console.log(filteredOrders,"returnnnn")
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">All Orders</h1>
@@ -69,7 +44,7 @@ const AdminOrdersPage = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredOrders?.map((order) => (
+            {data?.order?.map((order) => (
       <tr
       key={order._id}
       className="border-b hover:bg-gray-50 transition duration-200"
@@ -98,15 +73,14 @@ const AdminOrdersPage = () => {
     
       <td className="px-4 py-4">
         <button
-          onClick={() => handleStatusChange(order._id,"readyToServe" )}
           className={`px-4 py-2 text-sm font-semibold rounded-full shadow-sm transition transform hover:scale-105 
             ${
-              order.status === "placed"
+              order.status === "Delivered"
                 ? "bg-red-500 hover:bg-red-600 text-white"
-                : "bg-green-500 hover:bg-green-600 text-white"
+                : "bg-orange-500 hover:bg-orange-500 text-white"
             }`}
         >
-          Ready to Serve
+        {order.status}
         </button>
       </td>
     
@@ -114,7 +88,7 @@ const AdminOrdersPage = () => {
     </tr>
     
             ))}
-            {filteredOrders?.length === 0 && (
+            {data?.order?.length === 0 && (
               <tr>
                 <td colSpan="5" className="text-center py-4 text-gray-500">
                   No orders found.
@@ -128,4 +102,4 @@ const AdminOrdersPage = () => {
   );
 };
 
-export default AdminOrdersPage;
+export default  AdminProductList;

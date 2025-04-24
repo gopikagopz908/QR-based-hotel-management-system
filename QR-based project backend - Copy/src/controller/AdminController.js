@@ -7,6 +7,7 @@ import Qrcode from "../model/qrcodeModel.js";
 import { AdddStaffService, deleteStaffService, getAllProductService, StaffEditService } from "../Service/AdminService.js";
 import CustomError from "../utils/customError.js";
 import Staffs from "../model/StaffModel.js";
+import Products from "../model/productModel.js";
 // export const generateQRCode = asyncHandler(async (req, res) => {
 //     const url = req.query.url || "https://your-restaurant.com/table/12";
 //     const data = req.query.data || JSON.stringify({ table: "12", restaurant: "FitnessFoodie" });
@@ -35,8 +36,13 @@ if(email===process.env.ADMIN_EMAIL&&password===process.env.ADMIN_PASSWORD){
     token
 
   })
+}else{
+  res.status(400).json({
+    status:false,
+    message:"Inavalid user or credentials",
+    token
 
-  
+  })
 }
 
 
@@ -108,6 +114,38 @@ export const getQrCode=asyncHandler(async(req,res)=>{
       })
   }
 });
+
+
+
+export const getPaginatedProducts = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1; // default to page 1
+    const limit = 10;
+    const skip = (page - 1) * limit;
+
+    const [products, total] = await Promise.all([
+      Products.find().skip(skip).limit(limit),
+      Products.countDocuments()
+    ]);
+
+    const totalPages = Math.ceil(total / limit);
+
+    res.status(200).json({
+      products,
+      currentPage: page,
+      totalPages,
+      totalProducts: total
+    });
+  } catch (error) {
+    console.error("Pagination Error:", error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
+
+
 
 
 

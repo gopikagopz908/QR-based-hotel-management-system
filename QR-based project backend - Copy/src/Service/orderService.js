@@ -76,6 +76,7 @@
 // }
 
 
+import mongoose from "mongoose";
 import razorpayInstance from "../configuration/razorpay.js";
 import Order from "../model/orderModel.js";
 import Products from "../model/productModel.js";
@@ -258,3 +259,31 @@ export const getAllOrderService = async () => {
   }
 };
 
+
+
+export const updateStatusService = async (status, id) => {
+  console.log("status:", status, "id:", id);
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new Error("Invalid order ID format");
+    }
+
+    const updatedOrder = await Order.findOneAndUpdate(
+      { _id: id }, 
+      { $set: { status: status } },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      console.log("Order not found with the given ID");
+      return null;
+    }
+
+    console.log(updatedOrder, "Updated Order");
+    return updatedOrder;
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    throw error;
+  }
+};

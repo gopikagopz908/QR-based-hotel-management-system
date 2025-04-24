@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Mail, Lock } from 'lucide-react';
 import useLogin from '../../hooks/useLogin';
+import useStaffLogin from '../../hooks/useStaffLogin';
 
 const AdminLoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loading, Login } = useLogin();
+  const{StaffLogin}=useStaffLogin()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +17,14 @@ const AdminLoginPage = () => {
     }
 
     const data = { email, password };
-    await Login(data);
+    console.log(import.meta.env.VITE_ADMIN_EMAIL, "adminemail");
+
+    if(email ===import.meta.env.VITE_ADMIN_EMAIL){
+      await Login(data);
+    }else{
+      StaffLogin(data)
+    }
+  
     console.log('Login attempt with:', { email, password });
   };
 

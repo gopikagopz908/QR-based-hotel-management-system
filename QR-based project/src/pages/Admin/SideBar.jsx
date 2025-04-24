@@ -1,42 +1,67 @@
 import { LayoutDashboard, LogOut, ShoppingCart, Table, Users, UtensilsCrossed } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { useAuthContext } from "../../context/authContext";
 
 const Sidebar = () => {
     const location = useLocation();
     const navigate=useNavigate()
+  const {role}=useAuthContext();
+    console.log(role,"roleee")
+
     const logout=()=>{
       localStorage.removeItem("role")
       navigate('/admin/login')
     }
+   
+
     const menuItems = [
-      { 
-        path: "/admin", 
-        name: "Dashboard", 
-        icon: <LayoutDashboard className="w-5 h-5" /> 
+      {
+        path: "/admin",
+        name: "Dashboard",
+        icon: <LayoutDashboard className="w-5 h-5" />,
+        roles: ["Admin"],
       },
-      { 
-        path: "foods", 
-        name: "Foods", 
-        icon: <UtensilsCrossed className="w-5 h-5" /> 
+      {
+        path: "foods",
+        name: "Foods",
+        icon: <UtensilsCrossed className="w-5 h-5" />,
+        roles: ["Admin"],
       },
-      { 
-        path: "tables", 
-        name: "Tables", 
-        icon: <Table className="w-5 h-5" /> 
+      {
+        path: "tables",
+        name: "Tables",
+        icon: <Table className="w-5 h-5" />,
+        roles: ["Admin"],
       },
-      { 
-        path: "staffs", 
-        name: "Staffs", 
-        icon: <Users className="w-5 h-5" /> 
+      {
+        path: "staffs",
+        name: "Staffs",
+        icon: <Users className="w-5 h-5" />,
+        roles: ["Admin"],
       },
-      { 
-        path: "orders", 
-        name: "Orders", 
-        icon: <ShoppingCart className="w-5 h-5" /> 
+      {
+        path: "orders",
+        name: "Orders",
+        icon: <ShoppingCart className="w-5 h-5" />,
+        roles: ["cheff"],
       },
+      {
+        path: "staff/orders",
+        name: "orders",
+        icon: <ShoppingCart className="w-5 h-5" />,
+        roles: ["supplier"],
+      },
+      {
+        path: "/admin/list",
+        name: "orders",
+        icon: <ShoppingCart className="w-5 h-5" />,
+        roles: ["Admin"],
+      }
     ];
+  
+   
+    const filteredMenu = menuItems.filter((item) => item.roles.includes(role));
   
     const isActive = (path) => {
       return location.pathname === path;
@@ -70,7 +95,7 @@ const Sidebar = () => {
             ))}
           </ul> */}
          <ul>
-  {menuItems.map((item) => (
+  {filteredMenu.map((item) => (
     <li
       key={item.path}
       className={`rounded-md transition-all ${

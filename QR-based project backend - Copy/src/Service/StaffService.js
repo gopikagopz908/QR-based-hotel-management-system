@@ -6,7 +6,11 @@ import { generateToken } from "../utils/generateToken.js";
 export const staffLoginService=async(email,password)=>{
    
     const data=await Staffs.findOne({email});
-    console.log(data.role,"dataa")
+    if(!data){
+     return  res.status(400).json({
+        message:"no staff found"
+      })
+    }
     const isTrue=await bcrypt.compare(password,data.password);
     console.log(isTrue,"truuu")   
     let token;
@@ -17,3 +21,6 @@ export const staffLoginService=async(email,password)=>{
     }
    return token;
 }
+
+
+

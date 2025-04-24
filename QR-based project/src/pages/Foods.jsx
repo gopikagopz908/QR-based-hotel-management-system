@@ -3,16 +3,17 @@ import AddFoodModal from "../components/addEditModal";
 import axiosInstance from "../Api/axiosInstance";
 import useDeleteProduct from "../hooks/useDeleteproduct";
 import Swal from 'sweetalert2';
+import { useQuery } from "@tanstack/react-query";
 
 const Foods = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [menu, setMenu] = useState([]);
+  // const [menu, setMenu] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [id, setid] = useState("");
   const [isRender, setRender] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   const [totalPages, setTotalPages] = useState(1);
 
   const { DeleteProduct } = useDeleteProduct();
@@ -22,25 +23,45 @@ const Foods = () => {
   };
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get("/product/getProduct", {
-          params: {
-            page: currentPage,
-            limit: itemsPerPage,
-            category: activeCategory === "All" ? "" : activeCategory,
-          },
-        });
-        setMenu(response.data.products);
-        setTotalPages(Math.ceil(response.data.totalProducts / itemsPerPage));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [isRender, activeCategory, currentPage]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axiosInstance.get("/product/getProduct", {
+  //         params: {
+  //           page: currentPage,
+  //           limit: itemsPerPage,
+  //           category: activeCategory === "All" ? "" : activeCategory,
+  //         },
+  //       });
+  //       setMenu(response.data.products);
+  //       setTotalPages(Math.ceil(response.data.totalProducts / itemsPerPage));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [isRender, activeCategory, currentPage]);
 
+  const {
+    data: menu = [], 
+    isLoading, 
+    isError,
+    refetch
+  } = useQuery({
+    queryKey: ['pages', currentPage], // Use page number instead of undefined reload
+    queryFn: async () => {
+      const response = await axiosInstance.get(`admin/pagination?page=${currentPage}`);
+              setTotalPages(response.data.
+          totalPages)
+      return response.data;
+    }
+  });
+
+  
+
+
+
+  
   function handleOpenmodal(id) {
     setid(id);
     setIsModalOpen(true);
@@ -57,11 +78,13 @@ const Foods = () => {
 
   const handleClose = () => {
     setIsModalOpen(false);
+    console.log("object")
     setid("");
+    window.location.reload()
   };
 
   const categories = ["All", "Veg", "nonVeg", "Drinks", "Desserts"];
-
+console.log(isModalOpen,"modaaaall")
   return (
     <>
       {/* Category Buttons */}
@@ -108,7 +131,7 @@ const Foods = () => {
             </tr>
           </thead>
           <tbody>
-            {menu.map((item, index) => {
+            {menu?.products?.map((item, index) => {
               const isSelected = selectedItems.some((i) => i.id === item.id);
               return (
                 <tr
@@ -117,7 +140,8 @@ const Foods = () => {
                     isSelected ? "bg-red-100" : ""
                   }`}
                 >
-                  <td className="p-3 font-bold">{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                 <td className="p-3 font-bold">{(currentPage - 1) * itemsPerPage + index + 1}</td>
+
                   <td className="p-3">
                     <img
                       src={item.image}
@@ -146,7 +170,8 @@ const Foods = () => {
                             if (result.isConfirmed) {
                               DeleteProduct(item._id);
                               Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
-                              handleRender();
+                              refetch();
+                              window.location.reload()
                             }
                           });
                         }}
@@ -187,7 +212,7 @@ const Foods = () => {
       {/* Add Item Modal */}
       <AddFoodModal
         isOpen={isModalOpen}
-        onClose={() => handleClose(handleRender())}
+        onClose={() => handleClose()}
         ids={id}
       />
     </>

@@ -1,6 +1,6 @@
 import asyncHandler from "../Middlewares/asyncHandler.js";
 import Order from "../model/orderModel.js";
-import { addOrderService, getAllOrderService, verifyPaymentService } from "../Service/orderService.js";
+import { addOrderService, getAllOrderService, updateStatusService, verifyPaymentService } from "../Service/orderService.js";
 import { STATUS } from "../utils/constant.js";
 
 // export const addOrder=asyncHandler(async(req,res)=>{
@@ -42,11 +42,11 @@ export const addOrder=asyncHandler(async(req,res)=>{
 
 
 export const verifyPayment = asyncHandler(async (req, res) => {
-    const { paymentId, orderId } = req.body;
-    
+    const {  razorpayId, orderId } = req.body;
+    console.log(req.body,"paymentttttVerifiedd")  
     try {
-      const isPaymentVerified = await verifyPaymentService(paymentId, orderId);
-
+      const isPaymentVerified = await verifyPaymentService( razorpayId,orderId);
+ 
       if (isPaymentVerified) {
         res.status(200).json({
           message: "Payment verified successfully",
@@ -129,4 +129,33 @@ export const singleOrder = asyncHandler(async (req, res) => {
     message: "Order viewed successfully",
     order,
   });
+});
+
+
+
+
+export const updateStatus = asyncHandler(async (req, res) => {
+  const { status } = req.body;
+  const { id } = req.params;
+
+  // Validate inputs
+  if (!status || !id) {
+    return res.status(400).json({
+      message: "Invalid status or ID",
+    });
+  }
+
+  // Call the service
+  const result = await updateStatusService(status, id);
+
+  if (result) {
+    res.status(200).json({
+      message: "Status updated successfully",
+      updatedOrder: result, // optional: return updated order
+    });
+  } else {
+    res.status(404).json({
+      message: "Order not found",
+    });
+  }
 });

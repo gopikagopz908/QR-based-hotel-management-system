@@ -2,12 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import axiosInstance from '../../Api/axiosInstance';
 
-
-
-
-
-
-const AdminOrdersPage = () => {
+const  SupplierList = () => {
   const [filterStatus, setFilterStatus] = useState('All');
   const queryClient = useQueryClient();
 
@@ -47,7 +42,7 @@ const AdminOrdersPage = () => {
 
 
   console.log(data,"dataaa")
-  const filteredOrders =data.order?.filter((order) => order.status ==="placed");
+  const filteredOrders =data.order?.filter((order) => order.status ==="readyToServe");
 
 
       console.log(filteredOrders,"returnnnn")
@@ -98,15 +93,15 @@ const AdminOrdersPage = () => {
     
       <td className="px-4 py-4">
         <button
-          onClick={() => handleStatusChange(order._id,"readyToServe" )}
+          onClick={() => handleStatusChange(order._id,"Delivered" )}
           className={`px-4 py-2 text-sm font-semibold rounded-full shadow-sm transition transform hover:scale-105 
             ${
-              order.status === "placed"
+              order.status === "Delivered"
                 ? "bg-red-500 hover:bg-red-600 text-white"
-                : "bg-green-500 hover:bg-green-600 text-white"
+                : "bg-orange-500 hover:bg-orange-500 text-white"
             }`}
         >
-          Ready to Serve
+          Delivered
         </button>
       </td>
     
@@ -128,4 +123,4 @@ const AdminOrdersPage = () => {
   );
 };
 
-export default AdminOrdersPage;
+export default  SupplierList;
