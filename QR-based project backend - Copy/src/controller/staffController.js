@@ -13,6 +13,7 @@ export const staffLogin=asyncHandler(async(req,res)=>{
      res.status(201).json({
         message:"staff logined successfully",
         token,role
+        
     })
     
 })

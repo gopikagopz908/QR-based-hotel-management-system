@@ -10,6 +10,7 @@ const  AdminProductList = () => {
 
   
   const { data = [], isLoading, isError,refetch } = useQuery({
+
     queryKey: ['order'],
     queryFn: async () => {
       const response = await axiosInstance.get('/order/getAllOrders');
@@ -17,13 +18,11 @@ const  AdminProductList = () => {
     },
   });
 
+console.log(data,'hiiii')
 
 
 
 
-
-
-  
 
 
   return (
@@ -51,7 +50,7 @@ const  AdminProductList = () => {
     >
       <td className="px-4 py-4 align-top">
         <div className="space-y-1">
-          {order.items.map((item, idx) => (
+          {order?.items?.map((item, idx) => (
             <div key={idx} className="flex items-center gap-2 text-sm">
               <span className="text-gray-500 font-medium">{idx + 1}.</span>
               <span className="text-gray-800">{item.productId.name}</span>
@@ -60,7 +59,6 @@ const  AdminProductList = () => {
           ))}
         </div>
       </td>
-    
       <td className="px-4 py-4 text-sm text-gray-700 capitalize">
         <span className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
           {order.paymentMethod}

@@ -60,7 +60,7 @@ const Navbar = () => {
           </button>
 
           {/* Desktop Navigation Menu */}
-          <ul className="hidden md:flex space-x-15 items-center ">
+          {/* <ul className="hidden md:flex space-x-15  items-center ">
             
             <li>
               <Link
@@ -71,14 +71,7 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* <li>
-              <Link
-                to="/menu"
-                className="text-gray-700 hover:text-red-500 font-semibold text-3xl  md:text-xl  transition"
-              >
-                Menu
-              </Link>
-            </li> */}
+            
             <li>
   <Link
     to="/menu"
@@ -104,10 +97,83 @@ const Navbar = () => {
                 Contact
               </Link>
             </li>
-          </ul>
+          </ul> */}
+          {/* <div className="flex justify-center w-full">
+  <ul className="hidden md:flex space-x-10 items-center">
+    <li>
+      <Link
+        to="/"
+        className="text-gray-800 hover:text-red-500 text-xl lg:font-semibold md:text-xl hover:underline"
+      >
+        Home
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="/menu"
+        className="text-gray-700 hover:text-red-500 font-semibold text-3xl md:text-xl transition hover:underline"
+      >
+        Menu
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="/about"
+        className="text-gray-700 hover:text-red-500 font-semibold text-3xl md:text-xl transition hover:underline"
+      >
+        About
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="/contact"
+        className="text-gray-700 hover:text-red-500 font-semibold text-3xl md:text-xl transition hover:underline"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</div> */}
+<div className="hidden md:flex justify-center w-full absolute left-1/2 transform -translate-x-1/2">
+  <ul className="flex space-x-15 items-center">
+    <li>
+      <Link
+        to="/"
+        className="text-gray-800 hover:text-red-500 text-xl lg:font-semibold md:text-xl hover:underline"
+      >
+        Home
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="/menu"
+        className="text-gray-700 hover:text-red-500 font-semibold text-3xl md:text-xl transition hover:underline"
+      >
+        Menu
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="/about"
+        className="text-gray-700 hover:text-red-500 font-semibold text-3xl md:text-xl transition hover:underline"
+      >
+        About
+      </Link>
+    </li>
+    <li>
+      <Link
+        to="/contact"
+        className="text-gray-700 hover:text-red-500 font-semibold text-3xl md:text-xl transition hover:underline"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</div>
+
 
           {/* Desktop Search */}
-          <div className="hidden md:flex  md:mt-1  items-center w-[200px] px-7 py-3 rounded-full shadow-inner relative border border-gray-300 focus-within:border-black bg-white transition-all duration-300 ease-in-out">
+          {/* <div className="hidden md:flex  md:mt-1  items-center w-[200px] px-7 py-3 rounded-full shadow-inner relative border border-gray-300 focus-within:border-black bg-white transition-all duration-300 ease-in-out">
             <input
               type="text"
               className="bg-transparent outline-none text-gray-800 placeholder-gray-500 px-4 pr-10 w-full text-sm focus:placeholder-gray-400"
@@ -120,14 +186,14 @@ const Navbar = () => {
             >
               <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
             </svg>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="md:hidden px-4 pb-6 bg-white shadow-lg rounded-b-lg">
             {/* Search Bar */}
-            <div className="flex items-center w-full mt-4 px-4 py-2 rounded-full shadow-inner border border-gray-300 bg-gray-100 relative">
+            {/* <div className="flex items-center w-full mt-4 px-4 py-2 rounded-full shadow-inner border border-gray-300 bg-gray-100 relative">
               <input
                 type="text"
                 className="bg-transparent outline-none text-gray-800 placeholder-gray-500 px-3 pr-10 w-full text-base"
@@ -140,7 +206,7 @@ const Navbar = () => {
               >
                 <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
               </svg>
-            </div>
+            </div> */}
 
             {/* Navigation Links */}
             <ul className="space-y-4 mt-6 text-center">
