@@ -6,14 +6,14 @@ import AdminNavbar from "./Navbar";
 
 const AdminLayout = () => {
   return (
-    <div className="h-screen">
-    <AdminNavbar/>
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar/>
-      <main className="flex-1 p-6 overflow-auto">
-        <Outlet/>
-      </main>
-    </div>
+    <div className="h-screen flex flex-col">
+      <AdminNavbar />
+      <div className="flex flex-1 bg-gray-100 overflow-hidden">
+        <Sidebar />
+        <main className="flex-1 overflow-y-auto">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };

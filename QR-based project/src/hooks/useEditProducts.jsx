@@ -16,6 +16,7 @@ function useEditProduct() {
       console.error('Error updating product:', error);
     } finally {
       setLoading(false);
+      console.log("object")
     }
   };
 

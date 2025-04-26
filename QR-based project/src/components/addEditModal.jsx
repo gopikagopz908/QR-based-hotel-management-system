@@ -14,12 +14,7 @@ useEffect(() => {
   }
 }, [ids]);
 
-
-console.log(singleProduct,"dddfffdddf")
-
-
-
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     name: '',
     price: '',
     image: null,
@@ -55,7 +50,6 @@ const [preview, setPreview] = useState(null);
 
  
 
-console.log(singleProduct,"singleee")
 
 
  
@@ -76,7 +70,7 @@ console.log(singleProduct,"singleee")
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
   const form = new FormData();
   form.append('name', formData.name);
@@ -84,20 +78,15 @@ console.log(singleProduct,"singleee")
   form.append('description', formData.description);
   form.append('category', formData.category);
   form.append('image', formData.image); 
-console.log(form,"formmm")
-  if(!ids){
+ if(!ids){
     console.log(formData,"gffgnfgn")
-    AddProduct(form)
+  await  AddProduct(form)
   }else{
-editProduct(ids,form)
+  await  editProduct(ids,form)
+  
   }
 
-    
-
-  
-  
-
-    setFormData({
+   setFormData({
       name: '',
       price: '',
       image: null,
@@ -180,10 +169,7 @@ editProduct(ids,form)
   </div>
 </div>
 
-
-
-
-          <div className="flex justify-end gap-2">
+<div className="flex justify-end gap-2">
             <button
               type="button"
               onClick={onClose}

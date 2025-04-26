@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import AddFoodModal from "../components/addEditModal";
-import axiosInstance from "../Api/axiosInstance";
-import useDeleteProduct from "../hooks/useDeleteproduct";
+import React, {  useState } from "react";
+import AddFoodModal from "../../components/addEditModal";
+import useDeleteProduct from "../../hooks/useDeleteproduct";
 import Swal from 'sweetalert2';
 import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "../../Api/axiosInstance";
+
 
 const Foods = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -11,44 +12,19 @@ const Foods = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [id, setid] = useState("");
-  const [isRender, setRender] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [totalPages, setTotalPages] = useState(1);
-
-  const { DeleteProduct } = useDeleteProduct();
-
-  const handleRender = () => {
-    setRender(!isRender);
-  };
+ const { deleteProduct } = useDeleteProduct();
 
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axiosInstance.get("/product/getProduct", {
-  //         params: {
-  //           page: currentPage,
-  //           limit: itemsPerPage,
-  //           category: activeCategory === "All" ? "" : activeCategory,
-  //         },
-  //       });
-  //       setMenu(response.data.products);
-  //       setTotalPages(Math.ceil(response.data.totalProducts / itemsPerPage));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [isRender, activeCategory, currentPage]);
-
-  const {
+const {
     data: menu = [], 
     isLoading, 
     isError,
     refetch
   } = useQuery({
-    queryKey: ['pages', currentPage], // Use page number instead of undefined reload
+    queryKey: ['pages', currentPage],
     queryFn: async () => {
       const response = await axiosInstance.get(`admin/pagination?page=${currentPage}`);
               setTotalPages(response.data.
@@ -80,15 +56,22 @@ const Foods = () => {
     setIsModalOpen(false);
     console.log("object")
     setid("");
-    window.location.reload()
-  };
+    refetch()
+};
+
+const handleDelete=async(id)=>{
+  console.log(id,"iddd")
+await deleteProduct(id)
+refetch();
+}
+
 
   const categories = ["All", "Veg", "nonVeg", "Drinks", "Desserts"];
-console.log(isModalOpen,"modaaaall")
+
   return (
     <>
       {/* Category Buttons */}
-      <div className="flex flex-wrap gap-4 justify-center overflow-hidden">
+      <div className="flex flex-wrap gap-4 justify-center overflow-hidden p-4">
         {categories.map((category) => (
           <button
             key={category}
@@ -131,7 +114,10 @@ console.log(isModalOpen,"modaaaall")
             </tr>
           </thead>
           <tbody>
-            {menu?.products?.map((item, index) => {
+            {menu?.products?.filter((item) => {
+      if (activeCategory === "All") return true;
+      return item.category === activeCategory;
+    }).map((item, index) => {
               const isSelected = selectedItems.some((i) => i.id === item.id);
               return (
                 <tr
@@ -153,34 +139,37 @@ console.log(isModalOpen,"modaaaall")
                   <td className="p-3 font-medium">{item.category}</td>
                   <td className="p-3 text-black">{item.description}</td>
                   <td className="p-3 text-red-600 font-semibold">₹{item.price}</td>
-                  <td className="p-3">
-                    <div className="flex space-x-2">
-                      <button onClick={() => handleOpenmodal(item._id)} className="bg-black text-white px-3 py-1 rounded text-xs">Edit</button>
-                      <button
-                        onClick={() => {
-                          Swal.fire({
-                            title: 'Are you sure?',
-                            text: "Do you want to delete this item?",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'Yes, delete it!',
-                          }).then((result) => {
-                            if (result.isConfirmed) {
-                              DeleteProduct(item._id);
-                              Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
-                              refetch();
-                              window.location.reload()
-                            }
-                          });
-                        }}
-                        className="bg-black text-white px-3 py-1 rounded text-xs"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
+                  <td className="p-4">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleOpenmodal(item._id)}
+                          className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-4 py-2 rounded-md shadow-md"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => {
+                            Swal.fire({
+                              title: 'Are you sure?',
+                              text: "You won't be able to revert this!",
+                              icon: 'warning',
+                              showCancelButton: true,
+                              confirmButtonColor: '#d33',
+                              cancelButtonColor: '#3085d6',
+                              confirmButtonText: 'Yes, delete it!',
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                handleDelete(item._id);
+                                
+                               }
+                            });
+                          }}
+                          className="bg-red-500 hover:bg-red-600 text-white text-xs px-4 py-2 rounded-md shadow-md"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
                 </tr>
               );
             })}

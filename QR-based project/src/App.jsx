@@ -1,68 +1,16 @@
-import React from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import './index.css'
-
-import {BrowserRouter as Router,Routes,Route,Link, Navigate}from 'react-router-dom'
+import React from 'react';
+import './App.css';
+import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './route';
 
 
-import Layout from './layouts/Layout'
-import Home from './Home'
-import About from './About'
-import Contact from './Contact'
-import Menu from './Menu'
-import Orders from './pages/orders'
-// import AdminLayout from './pages/Admin/AdminLayout'
-import DashBoard from './pages/Admin/DashBoard'
-import Foods from './pages/Foods'
-import Table from './pages/Admin/Table'
-import { useAuthContext } from './context/authContext'
-import AdminLoginPage from './pages/Admin/LoginPage'
-import StaffTable from './pages/Staff'
-import UserLogin from './pages/UserLogin'
-import AdminLayout from './pages/Admin/AdminLayout'
-import ChefOrders from './pages/Admin/chefOrders'
-import AdminOrdersPage from './pages/Admin/Orders'
-import SupplierList from './pages/Admin/SupplierList'
-import AdminProductList from './pages/Admin/AdminProductList'
-// import AdminOrders from './pages/Admin/Orders'
 function App() {
-  const {role}=useAuthContext();
-
   return (
     <Router>
-      <Routes>
-      <Route path='/admin/login' element={<AdminLoginPage/>} />
-{role ? (
- <Route path="/admin" element={<AdminLayout/>}>
- <Route index element={<DashBoard/>}/>
- <Route path="foods" element={<Foods/>}/>
- <Route path="tables" element={<Table/>}/>
- <Route path="staffs"  element={<StaffTable/>}/>
- <Route path="cheff"  element={<ChefOrders/>}/>
- <Route path="orders" element={<AdminOrdersPage/>}/>
- <Route path="staff/orders" element={<SupplierList/>}/>
- <Route path="/admin/list" element={<AdminProductList/>}/>
-</Route>
-):(
-  <Route path="/admin/*" element={<Navigate to="/" />} />
-)}
-       
-
-
-        <Route element={<Layout />}>
-          <Route   index  element={<Home />} />
-          <Route path="/about" element={<About/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-          <Route path="/menu" element={<Menu/>}/>
-          <Route path="/login" element={<UserLogin/>}/>
-        </Route>
-        <Route path="/orders" element={<Orders/>}/>
-
-      </Routes>
+      <AppRoutes />
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

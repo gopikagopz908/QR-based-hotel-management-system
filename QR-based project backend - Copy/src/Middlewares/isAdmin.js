@@ -1,16 +1,17 @@
-import CustomError from "../utils/customError.js";
-import asyncHandler from "./asyncHandler.js";
+// import CustomError from "../utils/customError.js";
+// import asyncHandler from "./asyncHandler.js";
 
 
 
-const isAdmin=asyncHandler((req,res,next)=>{
+// const isAdmin=asyncHandler((req,res,next)=>{
 
-    if(req.user && req.user.role === "admin"){
+//     if(req.user && req.user.role === "Admin"){
         
-        next()// if the user is admin, allow the req to proceed
-    }else{
-        throw new CustomError("Access denied.Admin only",403)
-    }
-})
+        
+//         next()// if the user is admin, allow the req to proceed
+//     }else{
+//         throw new CustomError("Access denied.Admin only",403)
+//     }
+// })
 
-export default isAdmin
+// export default isAdmin

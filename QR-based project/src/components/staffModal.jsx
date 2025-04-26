@@ -22,6 +22,7 @@ const AddStaffModal = ({  onClose,id,setId}) => {
     }
   };
 
+  console.log(id,"idddd in modal")
 
  const {
       data=[],isLoading,isError
@@ -48,12 +49,12 @@ const AddStaffModal = ({  onClose,id,setId}) => {
     }
   }, [id]);
  
-const handleSubmit = (e) => {
+const handleSubmit = async(e) => {
 e.preventDefault();
 if(id){
-StaffEdit(staff,id)
+await StaffEdit(staff,id)
 }else{
-  StaffAdd(staff)
+ await StaffAdd(staff)
 }
 setId("")
 onClose()
@@ -94,7 +95,7 @@ onClose()
     />
 
     
-          <select
+  <select
   name="role"
   className="w-full border rounded p-2"
   onChange={handleChange}

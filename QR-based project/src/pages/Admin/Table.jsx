@@ -30,7 +30,7 @@ function Table() {
     setQrcode(false);
   }
   return (
-    <div className="p-2 ">
+    <div className="p-2  overflow-auto ">
       <div className="w-full  flex justify-end mb-14">
         <button
           onClick={openModal}
