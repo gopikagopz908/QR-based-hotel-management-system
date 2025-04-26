@@ -73,6 +73,7 @@
 
 import { useCallback } from 'react';
 import axiosInstance from '../Api/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 const loadRazorpayScript = (src) => {
   return new Promise((resolve) => {
@@ -91,6 +92,8 @@ const loadRazorpayScript = (src) => {
 };
 
 const useRazorpayPayment = () => {
+  const navigate=useNavigate()
+
   const openRazorpayPayment = useCallback(async (orderData) => {
 
     console.log(orderData,"orderData")
@@ -135,6 +138,8 @@ const useRazorpayPayment = () => {
           await axiosInstance.post('/order/verifypayment', paymentData);
 
           alert('Payment successful!');
+          navigate('/menu')
+          
           window.location.reload();
         },
         prefill: {

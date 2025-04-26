@@ -223,7 +223,7 @@ const Menu = () => {
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center text-gray-800 font-primary">
         🍽️ Our Menu
       </h1>
-      <p className="text-sm sm:text-base md:text-lg text-gray-700 tracking-wide font-light text-center font-serif max-w-full sm:max-w-3xl mx-auto px-4">
+      <p className="text-sm sm:text-base md:text-lg lg:text-sm text-gray-700 tracking-wide font-light text-center font-serif max-w-full sm:max-w-3xl mx-auto px-4">
         "We take every detail into account, bringing you the finest ingredients
         and flavors to craft an unforgettable dining experience".
       </p>
@@ -312,18 +312,18 @@ const Menu = () => {
 
       {/* ✅ Selected Items Footer */}
       {selectedItems.length > 0 && (
-        <div className="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 bg-white shadow-xl border rounded-2xl px-4 sm:px-8 py-2 w-[80%] max-w-4xl flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+        <div className="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 bg-white shadow-xl border rounded-2xl px-4 sm:px-8 py-2 w-[50%] max-w-4xl flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
           <div className="text-center sm:text-left">
-            <h2 className="font-medium text-gray-700 text-xl sm:text-2xl md:text-3xl">
+            <h2 className="font-medium text-gray-700 text-xl sm:text-2xl md:text-xl lg:text-xl">
               Selected Items:{" "}
-              <span className="font-bold">{selectedItems.length}</span>
+              <span className="font-bold lg:text-xl">{selectedItems.length}</span>
             </h2>
-            <p className="text-gray-600 text-lg md:text-xl font-semibold">
+            <p className="text-gray-600 text-lg md:text-base lg:text-xl font-semibold">
               Total: ₹{total}
             </p>
           </div>
           <button
-            className="bg-red-800 text-white px-4 py-2 md:px-6 md:py-3 rounded-full font-semibold hover:bg-red-700 transition text-base sm:text-lg md:text-xl"
+            className="bg-red-800 text-white  md:px-6 md:py-3  lg:py-2 lg:py-2 rounded-full font-semibold hover:bg-red-700 transition text-base sm:text-lg md:text-base lg:tex-xl"
             onClick={() =>
               navigate("/orders", { state: { selectedItems, total } })
             }

@@ -37,7 +37,7 @@ const Orders = () => {
   localStorage.setItem("orders", JSON.stringify(data));
   return (
     <div className=" mx-auto mt-0 px-2 pb-20 bg-gray-200 "> 
-      <h1 className="text-2xl sm:text-3xl  lg:text-4xl font-bold mb-20 text-center text-red-800 font-poppins">
+      <h1 className="text-2xl sm:text-3xl  lg:text-3xl font-bold mb-20 text-center text-red-800 font-poppins">
         🧾 Your Order Summary
       </h1>
 
@@ -54,7 +54,7 @@ const Orders = () => {
             <div
   key={item.id}
   className="bg-white rounded-3xl shadow-xl p-6 sm:p-10 lg:p-2 flex flex-col sm:flex-row justify-between gap-6 items-center transition-all duration-300 hover:scale-[1.01] 
-  w-full sm:w-[90%] md:w-[80%] lg:w-[80%] mx-auto"
+  w-full sm:w-[90%] md:w-[60%] lg:w-[80%] mx-auto"
 >
 
               
@@ -66,9 +66,9 @@ const Orders = () => {
 
               
               <div className="flex-1 space-y-2 text-center sm:text-left">
-                <h2 className="text-2xl lg:text-2xl sm:text-3xl font-bold text-gray-800">{item.name}</h2>
-                <p className="text-gray-500 text-base sm:text-lg lg:text-base">{item.description}</p>
-                <p className="text-2xl  sm:text-4xl lg:text-2xl text-red-600 font-semibold">₹{item.price}</p>
+                <h2 className="text-2xl lg:text-xl sm:text-xl font-bold text-gray-800">{item.name}</h2>
+                <p className="text-gray-500 text-base sm:text-lg lg:text-sm">{item.description}</p>
+                <p className="text-2xl  sm:text-4xl lg:text-xl text-red-600 font-semibold">₹{item.price}</p>
               </div>
 
               
@@ -76,19 +76,19 @@ const Orders = () => {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => decreaseQty(item.id)}
-                    className="w-10 sm:w-12 h-8 sm:h-12 rounded-full bg-gray-200 text-2xl sm:text-3xl lg:text-3xl font-bold hover:bg-gray-300 transition"
+                    className="lg:w-7 sm:w-12 lg:h-7 sm:h-12 rounded-full bg-gray-200 text-2xl sm:text-3xl lg:text-xl font-bold hover:bg-gray-300 transition"
                   >
                     −
                   </button>
-                  <span className="text-xl sm:text-2xl lg:text-3xl font-semibold">{item.quantity}</span>
+                  <span className="text-xl sm:text-2xl lg:text-xl font-semibold">{item.quantity}</span>
                   <button
                     onClick={() => increaseQty(item.id)}
-                    className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-gray-200 text-2xl sm:text-3xl lg:text-3xl font-bold hover:bg-gray-300 transition"
+                    className="lg:w-7 sm:w-12 lg:h-7 sm:h-12 rounded-full bg-gray-200 text-2xl sm:text-3xl lg:text-xl font-bold hover:bg-gray-300 transition"
                   >
                     +
                   </button>
                 </div>
-                <div className="text-xl sm:text-2xl lg:text-2xl font-bold text-black">
+                <div className="text-xl sm:text-2xl lg:text-xl font-bold text-black">
                 Total : ₹{item.price * item.quantity}
                 </div>
               </div>
@@ -102,7 +102,7 @@ const Orders = () => {
             </div>
             <button
               onClick={() =>navigate('/login') }
-              className="bg-red-800 text-white text-lg sm:text-xl  lg:text-xl font-semibold px-6 sm:px-8 py-4 sm:py-5 lg:py-2 rounded-full hover:bg-red-700 transition"
+              className="bg-red-800 text-white text-lg sm:text-xl  lg:text-base font-semibold px-6 sm:px-8 py-4 sm:py-5 lg:py-2  lg:px-2 rounded-full hover:bg-red-700 transition"
             >
               Pay Now
             </button>
@@ -114,7 +114,7 @@ const Orders = () => {
       <div className="flex justify-center mt-16">
         <button
           onClick={() => navigate("/menu")}
-          className="bg-black text-white px-8 sm:px-10 py-3 sm:py-4 lg:py-1 rounded-full text-xl sm:text-2xl lg:text-xl font-semibold hover:bg-red-700 transition"
+          className="bg-black text-white px-8 sm:px-10 py-3 sm:py-4 lg:py-2 lg:px-2 rounded-full text-xl sm:text-sm lg:text-base font-semibold hover:bg-red-700 transition"
         >
           Back to Menu
         </button>

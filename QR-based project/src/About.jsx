@@ -29,7 +29,7 @@ function About() {
       </div> */}
       <div className="flex flex-col md:flex-row items-center justify-center px-4 md:px-6 py-10 gap-8 bg-gray-100 min-h-screen">
  
-  <div className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[600px] lg:h-[450px] lg:w-[450px] flex justify-center items-center overflow-hidden">
+  <div className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[600px] lg:h-[400px] lg:w-[400px] flex justify-center items-center overflow-hidden">
     <img
       src="https://i.pinimg.com/736x/0c/e6/5c/0ce65c400915efb0d7439e271c2e231f.jpg"
       alt="Healthy Food"
@@ -39,7 +39,7 @@ function About() {
 
  
   <div className="w-full md:w-1/2 text-center md:text-left">
-    <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-5xl font-bold text-gray-800 mb-6 font-primary leading-tight">
+    <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-4xl font-bold text-gray-800 mb-6 font-primary leading-tight">
       We serve wholesome, nutritious meals for your family.
     </h1>
     <p className="text-gray-600 text-base sm:text-lg  lg:text-base font-serif">
@@ -53,14 +53,14 @@ function About() {
 
 
 <div className="bg-gray-100 mt-12 pt-1 pb-10 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold text-center text-gray-800 mb-6 font-primary leading-tight">
+<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl font-bold text-center text-gray-800 mb-6 font-primary leading-tight">
     What Our Customers Says
   </h1>
 
   <div className="w-full flex flex-wrap justify-center gap-6 px-4 lg:px-10 py-6">
  
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
-    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-red-700 mb-2">
+    <h3 className="text-lg sm:text-xl lg:text-xl font-semibold text-red-700 mb-2">
       “The best restaurant”
     </h3>
     <p className="text-gray-600 text-sm sm:text-base lg:text-sm font-serif">
@@ -83,7 +83,7 @@ function About() {
   </div>
 
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
-    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-red-700 mb-2">
+    <h3 className="text-lg sm:text-xl lg:text-xl font-semibold text-red-700 mb-2">
       “Simply delicious”
     </h3>
     <p className="text-gray-600 text-sm sm:text-base lg:text-sm font-serif">
@@ -107,7 +107,7 @@ function About() {
 
  
   <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col justify-between w-full sm:w-[45%] lg:w-[30%]">
-    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-red-700 mb-2">
+    <h3 className="text-lg sm:text-xl lg:text-xl font-semibold text-red-700 mb-2">
       “One of a kind restaurant”
     </h3>
     <p className="text-gray-600 text-sm sm:text-base lg:text-sm font-serif">

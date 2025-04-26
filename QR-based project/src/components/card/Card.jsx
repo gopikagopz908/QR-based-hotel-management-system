@@ -64,16 +64,22 @@ const Card = ({ image, name, price, description }) => {
       >
         {selected && <Check className="text-green-500 w-5 h-5" />}
       </div>
-      <img
+      {/* <img
         src={image}
         alt={name}
         className="h-28 w-28 sm:h-32 sm:w-32 lg:h-35 lg:w-35 rounded-full absolute -top-10 transition-transform duration-500 ease-out hover:scale-90"
-      />
+      /> */}
+      <img
+  src={image}
+  alt={name}
+  className="h-28 w-28 sm:h-32 sm:w-32 lg:h-35 lg:w-35 rounded-full absolute -top-10 transition duration-500 ease-out transform hover:scale-110 hover:rotate-3 hover:shadow-[0_10px_20px_rgba(0,0,0,0.3)] z-10 hover:z-50"
+/>
+
 
       {/* Content */}
       <div className="text-center md:mt-24  sm:mt-32 p-4 space-y-3">
-        <p className="text-xl sm:text-2xl font-bold text-red-500">₹{price}</p>
-        <h2 className="text-lg sm:text-xl font-bold ">{name}</h2>
+        <p className="text-xl sm:text-xl  lg:text-xl font-light text-red-500">₹{price}</p>
+        <h2 className="text-lg sm:text-xl lg:text-xl font-semibold text-gray-800 font-primary">{name}</h2>
         <p className="text-gray-600 text-sm sm:text-base font-light lg:text-sm">{description}</p>
       </div>
     </div>
